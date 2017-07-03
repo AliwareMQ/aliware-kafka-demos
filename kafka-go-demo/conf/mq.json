@@ -1,0 +1,12 @@
+{
+  "topics": {
+    "gift": "XXX"
+  },
+  "servers": ["kafka-ons-internet.aliyun.com:8080"],
+  "ak": "XXX",
+  "sk": "XXX",
+  "producerId": "XXX",
+  "consumerId": "XXX",
+  "cert_file": "ca-cert",
+  "password": "XXX"
+}
