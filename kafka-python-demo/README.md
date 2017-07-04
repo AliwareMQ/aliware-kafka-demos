@@ -1,8 +1,9 @@
 ### 接入说明
 用户可以利用Kafka Python Client去收发Ons的消息，使用之前请先阅读以下规约：
-1. 使用之前需要先申请Topic(类型选择Kafka消息)与Consumer ID，详情请参考[申请MQ资源](https://help.aliyun.com/document_detail/29536.html?spm=5176.doc29546.2.2.gWIToO)
-2. 如果没有申请Topic和Consumer ID，则会直接导致鉴权失败；申请成功后，将其更新到setting.py中；
-3. setting.py的sasl_plain_username即为阿里云的AccessKey，sasl_plain_password在公测期间需要加入钉钉群找管理员配置；
+1. 使用之前请先阅读[上一层目录的README](https://github.com/AliwareMQ/aliware-kafka-demos)
+2. setting.py中的bootstrap_servers请根据region列表进行选择
+2. Topic(注意消息类型是"kafka消息")与CID申请成功后，将其更新到setting.py中；
+3. setting.py的sasl_plain_username即为阿里云的AccessKey，sasl_plain_password为阿里云的**SecretKey的后10位**
 4. pip install kafka-python
 5. kafka-python这个库目前只支持SASL的PLAIN机制
 6. ca-cert是aliyun提供的证书

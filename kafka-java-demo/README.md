@@ -3,7 +3,7 @@
 ### Demo跑起来
 1. 添加自己的AccessKey，SecretKey到src/main/resources/kafka_client_jaas.conf中
 	
-2. 在ONS控制台申请Topic，类型选择"Kafka消息(公测中)", 这里假定为kafka-test(该Topic很有可能已经被别人申请，请修改为自己定义的名字)
+2. 在ONS控制台申请Topic，类型选择"Kafka消息", 这里假定为kafka-test(该Topic很有可能已经被别人申请，请修改为自己定义的名字)
 3. 执行
 
 	> sh run_demo.sh -Dkafka.ons.TOPIC=kafka-test
@@ -15,12 +15,7 @@
 	
 ### 接入说明
 
-	用户可以利用Kafka Client去收发Ons的消息，使用之前请先阅读以下规约：
-1. Kafka Client版本需要0.10及以上
-2. 使用之前需要先申请Topic(类型选择Kafka消息(公测中)), 与Consumer ID，详情请参考[申请MQ资源](https://help.aliyun.com/document_detail/29536.html?spm=5176.doc29546.2.2.gWIToO)
-3. 如果没有申请Topic，则会直接导致鉴权失败
-4. 其它Kafka使用相关文档请参考[Kafka官网](https://kafka.apache.org/0100/documentation.html)
-5. 欢迎加钉钉群咨询，用钉钉扫描[群二维码](http://img3.tbcdn.cn/5476e8b07b923/TB1HEQgQpXXXXbdXVXXXXXXXXXX)
+请参考[上一层目录的README](https://github.com/AliwareMQ/aliware-kafka-demos)
 
 #### 接入步骤一：引入依赖
 Maven方式：
@@ -28,7 +23,7 @@ Maven方式：
 <dependency>
      	<groupId>org.apache.kafka</groupId>
      	<artifactId>kafka-clients</artifactId>
-     	<version>0.10.0.0</version>
+     	<version>0.10.1.0</version>
 </dependency>
 <dependency>
 <groupId>com.aliyun.openservices</groupId>
@@ -58,10 +53,7 @@ SecretKey="XXX";
 
 
 #### 接入步骤三：下载根证书
-[证书truststore下载地址](https://github.com/dongeforever/KafkaOnsDemo/blob/master/src/main/resources/kafka.client.truststore.jks)
-
-![](https://lh3.googleusercontent.com/-wSGBivlpptk/WND60zVrIgI/AAAAAAAAABE/s5yqs0YYfh4/I/14900906870575.jpg)
-
+[证书truststore下载地址](http://common-read-files.oss-cn-shanghai.aliyuncs.com/kafka.client.truststore.jks)
 将证书放置在某个目录下，这里假定为/home/admin
 
 
@@ -70,15 +62,17 @@ SecretKey="XXX";
 
 |参数|值|
 |:--|:--|
-|bootstrap.servers|SASL_SSL://kafka-ons-internet.aliyun.com:8080|
+|bootstrap.servers|kafka-ons-internet.aliyun.com:8080|
 |ssl.truststore.location|/home/admin/kafka.client.truststore.jks|
 |ssl.truststore.password|KafkaOnsClient|
 |security.protocol|SASL_SSL|
 |sasl.mechanism|ONS|
 
-注意/home/admin要改为自己的目录
 
-其它Kafka参数遵照官网说明即可
+注意
+1. /home/admin要改为自己的目录
+2. bootstrap.servers请根据region进行选择，region对应列表在[上一层目录的README](https://github.com/AliwareMQ/aliware-kafka-demos)
+3. 其它参数遵照[Kafka官网](https://kafka.apache.org/0101/documentation.html)说明即可
 
 
 
