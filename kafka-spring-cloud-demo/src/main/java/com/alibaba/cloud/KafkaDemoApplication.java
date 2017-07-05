@@ -8,7 +8,7 @@ import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.cloud.stream.messaging.Source;
 
 @SpringBootApplication
-@EnableBinding({Sink.class, Source.class})
+@EnableBinding({Sink.class, Source.class, MySource.class})
 public class KafkaDemoApplication {
 
     public static void main(String[] args) {
