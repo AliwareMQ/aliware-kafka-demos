@@ -1,12 +1,8 @@
 {
-  "topics": {
-    "gift": "XXX"
-  },
-  "servers": ["kafka-ons-internet.aliyun.com:8080"],
+  "topics": ["XXX"],
+  "servers": ["XXX:8080"],
   "ak": "XXX",
-  "sk": "XXX",
-  "producerId": "XXX",
-  "consumerId": "XXX",
-  "cert_file": "ca-cert",
-  "password": "XXX"
+  "password": "XXX",
+  "consumerId": "CID_XXX",
+  "cert_file": "ca-cert"
 }

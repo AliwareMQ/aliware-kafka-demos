@@ -4,7 +4,11 @@ target/
 *.iws
 *.iml
 
-#
+##ignore go
+bin/ 
+pkg/
+github.com/
+
 #pom.xml.tag
 #pom.xml.releaseBackup
 #pom.xml.versionsBackup
@@ -72,4 +76,3 @@ target/
 #crashlytics.properties
 #crashlytics-build.properties
 #fabric.properties
-#
