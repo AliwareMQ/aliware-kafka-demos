@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"kafkaDemo/services"
+	"kafka-go-demo/services"
 	"os/signal"
 
 	"github.com/Shopify/sarama"

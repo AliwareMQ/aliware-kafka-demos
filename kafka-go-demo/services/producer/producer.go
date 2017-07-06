@@ -5,7 +5,7 @@ import (
 	"crypto/x509"
 	"fmt"
 	"io/ioutil"
-	"kafkaDemo/services"
+	"kafka-go-demo/services"
 
 	"github.com/Shopify/sarama"
 )
