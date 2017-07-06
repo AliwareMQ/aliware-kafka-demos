@@ -8,15 +8,15 @@
 ## 运行Demo
 1. 请确保安装了Go环境，详情参考https://golang.org
 2. git clone https://github.com/AliwareMQ/aliware-kafka-demos.git
-3. export GOPATH=`pwd`"/aliware-kafka-demos/kafka-go-demo"
-4. cd aliware-kafka-demos/kafka-go-demo
-5. 安装依赖(请保证联网，需要一定时间，请耐心等待): go get github.com/Shopify/sarama/ ; go get github.com/bsm/sarama-cluster
+3. cd aliware-kafka-demos/kafka-go-demo
+4. export GOPATH="\`pwd\`"
+5. 安装依赖(请保证联网，需要几分钟，请耐心等待): go get github.com/Shopify/sarama/ ; go get github.com/bsm/sarama-cluster
 6. go install services
-7. go install services/producer/
+7. go install services/producer
 8. go install services/consumer
 9. 按照本页下面配置说明配置conf/mq.json
-10. 生产: ./bin/producer
-11. 消费：./bin/consumer
+10. 生产(没报错说明OK): ./bin/producer
+11. 消费(没报错说明OK)：./bin/consumer
 
 ### 配置说明
 
