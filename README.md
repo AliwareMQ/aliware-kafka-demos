@@ -1,6 +1,6 @@
 ### Aliware Kafka Demos
 这里提供各种接入 Aliware Kafka 的demo，方便开发者快速上手。
-目前客户端demo包括 **Java**，**Python**，**Go**，**Logstash**，**SpringCloud**，其它客户端暂时请参照已有demo自行调试，后续会陆续完善。
+目前客户端demo包括 **Java**，**Python**，**Go**，**PHP**，**Logstash**，**SpringCloud**，其它客户端暂时请参照已有demo自行调试，后续会陆续完善。
 #### 接入说明
 1. Kafka服务端版本是0.10.1，Client版本建议0.10及以上
 2. 使用之前需要先申请Topic(类型选择**Kafka消息**)与ConsumerID，详情请参考[申请MQ资源](https://help.aliyun.com/document_detail/29536.html)
