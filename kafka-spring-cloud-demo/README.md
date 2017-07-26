@@ -11,6 +11,8 @@ Demo project of Spring Cloud Stream with [Aliyun Kafka](https://help.aliyun.com/
 6. 修改src/main/resources/application.properties中的kafka.ssl.truststore.location为自己的路径
 7. 执行KafkaDemoApplication.main,以启动消息消费的监听器，将直接打印消息内容
 8. 执行MessageOutputTest.testSend测试发送，看Console中是否打印"Hello Aliyun Kafka"
+9. 遇到问题先参考[Kafka常见报错及排查](https://help.aliyun.com/document_detail/57058.html)
+10. 欢迎加钉钉群咨询，用钉钉扫描[群二维码](http://img3.tbcdn.cn/5476e8b07b923/TB1HEQgQpXXXXbdXVXXXXXXXXXX) 
 
 ## 生产环境部署问题
 ### 1. SASL配置系统变量

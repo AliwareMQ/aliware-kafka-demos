@@ -11,6 +11,8 @@
 4. 看到结果如下表示成功(注意，第一次创建topic可能需要点时间，如遇失败，请间隔一定时间多试几次)
 
 	> produce ok:kafka-test-*
+5. 遇到问题先参考[Kafka常见报错及排查](https://help.aliyun.com/document_detail/57058.html)
+6. 欢迎加钉钉群咨询，用钉钉扫描[群二维码](http://img3.tbcdn.cn/5476e8b07b923/TB1HEQgQpXXXXbdXVXXXXXXXXXX) 
 	
 	
 ### 接入说明

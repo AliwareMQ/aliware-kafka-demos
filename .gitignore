@@ -3,6 +3,7 @@ target/
 .idea/
 *.iws
 *.iml
+*.pyc
 
 ##ignore go
 bin/ 
