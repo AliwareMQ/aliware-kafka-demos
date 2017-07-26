@@ -19,4 +19,5 @@ $rk->poll(0);
 while ($rk->getOutQLen() > 0) {
     $rk->poll(50);
 }
+echo "send succ" . PHP_EOL;
 
