@@ -4,6 +4,7 @@ target/
 *.iws
 *.iml
 *.pyc
+node_modules/
 
 ##ignore go
 bin/ 
