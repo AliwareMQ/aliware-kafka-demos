@@ -8,16 +8,16 @@ var config = {
   'sasl.username' : 'XXX',
   'sasl.password' : 'XXX',
   'ssl.ca.location' : './ca-cert',
-  'topic' : 'XXX
+  'topic' : 'XXX'
 }
 
 var producer = new Kafka.Producer({
 	/*'debug': 'all', */
-  'api.version.request': 'true',
-	'bootstrap.servers': config['bootstrap.servers'],
-	'dr_cb': true,
-  'dr_msg_cb': true,
-	'security.protocol' : 'sasl_ssl',
+    'api.version.request': 'true',
+    'bootstrap.servers': config['bootstrap.servers'],
+    'dr_cb': true,
+    'dr_msg_cb': true,
+    'security.protocol' : 'sasl_ssl',
 	'ssl.ca.location' : config['ssl.ca.location'],
 	'sasl.mechanisms' : 'PLAIN',
 	'sasl.username' : config['sasl.username'],
