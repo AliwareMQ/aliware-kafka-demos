@@ -14,8 +14,9 @@
 | --- | --- |
 | 公网 | kafka-ons-internet.aliyun.com:8080 |
 | 华东1 | kafka-cn-hangzhou.aliyun.com:8080 |
+| 华北2 | kafka-cn-beijing.aliyun.com:8080  |
 | 华东2 | 敬请期待 |
-| 华北2 | 敬请期待 |
+| 华南1 | 敬请期待 |
 
 
 #### 接入优势
