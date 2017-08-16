@@ -8,7 +8,8 @@
 
 ## 运行Demo
 1. 请确保安装了Node环境
-2. npm install node-rdkafka
+2. `export CPPFLAGS=-I/usr/local/opt/openssl/include and LDFLAGS=-L/usr/local/opt/openssl/lib`
+3. (c)npm install 
 9. 按照本页下面配置说明配置producer.js与consumer.js
 10. 生产: node producer.js
 11. 消费: node consumer.js

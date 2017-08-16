@@ -1,27 +1,20 @@
 
 const Kafka = require('node-rdkafka');
+const config = require('./setting');
 console.log(Kafka.features);
 console.log(Kafka.librdkafkaVersion);
-
-var config = {
-  'bootstrap.servers' : 'kafka-ons-internet.aliyun.com:8080', //各个region不一样
-  'sasl.username' : 'XXX',
-  'sasl.password' : 'XXX',
-  'ssl.ca.location' : './ca-cert',
-  'topic' : 'XXX'
-}
 
 var producer = new Kafka.Producer({
 	/*'debug': 'all', */
     'api.version.request': 'true',
-    'bootstrap.servers': config['bootstrap.servers'],
+    'bootstrap.servers': config['bootstrap_servers'],
     'dr_cb': true,
     'dr_msg_cb': true,
     'security.protocol' : 'sasl_ssl',
-	'ssl.ca.location' : config['ssl.ca.location'],
+	'ssl.ca.location' : './ca-cert',
 	'sasl.mechanisms' : 'PLAIN',
-	'sasl.username' : config['sasl.username'],
-	'sasl.password' : config['sasl.password']
+	'sasl.username' : config['sasl_plain_username'],
+	'sasl.password' : config['sasl_plain_password']
 });
 
 var connected = false
@@ -42,7 +35,7 @@ producer.on('ready', function() {
   try {
     producer.produce(
       // Topic to send the message to
-      config['topic'],
+      config['topic_name'],
       // optionally we can manually specify a partition for the message
       // this defaults to -1 - which will use librdkafka's default partitioner (consistent random for keyed messages, random for unkeyed messages)
       null,
