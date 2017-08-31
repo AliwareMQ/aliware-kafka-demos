@@ -5,6 +5,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "node-rdkafka": "^1.0.6"
+    "node-rdkafka": "^1.0.6",
+    "co": "*"
   }
 }
