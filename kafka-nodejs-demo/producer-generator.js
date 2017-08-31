@@ -4,8 +4,12 @@ const config = require('./setting');
 console.log(Kafka.features);
 console.log(Kafka.librdkafkaVersion);
 
-var produceSingleMessage = function(singleMsg) {
+var produceMessages = function(msgs) {
   return new Promise(function(resolve, reject) {
+    let msgsCount = 1;
+    if(Array.isArray(msgs)){
+      msgsCount = msgs.length;
+    };
     var producer = new Kafka.Producer({
         /*'debug': 'all', */
         'api.version.request': 'true',
@@ -25,11 +29,8 @@ var produceSingleMessage = function(singleMsg) {
     // Connect to the broker manually
     producer.connect();
 
-    // Wait for the ready event before proceeding
-    producer.on('ready', function() {
-      console.log("connect ok")
-      //连接成功后，尝试发一条消息
-      try {
+    var produceSingleMessage = function(singleMsg){
+        try {
         producer.produce(
           // Topic to send the message to
           config['topic_name'],
@@ -51,6 +52,19 @@ var produceSingleMessage = function(singleMsg) {
         console.error(err);
         reject(producer);
       }
+    }
+    // Wait for the ready event before proceeding
+    producer.on('ready', function() {
+      console.log("connect ok")
+      //连接成功后，尝试发一条或者n条消息
+      if(Array.isArray(msgs)){
+        msgs.forEach(function(singleMsg){
+            produceSingleMessage(singleMsg);
+        });
+      } else{
+        produceSingleMessage(msgs);
+      }
+
     });
 
     producer.on("disconnected", function() {
@@ -68,9 +82,12 @@ var produceSingleMessage = function(singleMsg) {
     producer.on('delivery-report', function(err, report) {
       //消息发送成功，这里会收到report
       console.log("delivery-report: producer ok");
-      //发送完一条，就关闭连接
+      //n条全部发送完，就关闭连接
       producer.disconnect();
-      resolve(producer);
+      msgsCount--;
+      if(!msgsCount){
+        resolve(producer);
+      }
     });
     // Any errors we encounter, including connection errors
     producer.on('event.error', function(err) {
@@ -86,7 +103,7 @@ var produceSingleMessage = function(singleMsg) {
 
 
 co.wrap(function* () {
-  var p1 = yield produceSingleMessage('Hello1')
-  var p2 = yield produceSingleMessage('Hello2')
-  var p3 = yield produceSingleMessage('Hello3')
+  var p1 = yield produceMessages('Hello1')
+  var p2 = yield produceMessages('Hello2')
+  var p3 = yield produceMessages(['Hello3', 'Hello4', 'Hello5'])
 })()
