@@ -3,17 +3,18 @@ const Kafka = require('node-rdkafka');
 const config = require('./setting');
 console.log(Kafka.features);
 console.log(Kafka.librdkafkaVersion);
+console.log(config)
 
 var consumer = new Kafka.KafkaConsumer({
-	/*'debug': 'all', */
+	/*'debug': 'all',*/ 
   'api.version.request': 'true',
 	'bootstrap.servers': config['bootstrap.servers'],
 	'security.protocol' : 'sasl_ssl',
-	'ssl.ca.location' : __dirname + './ca-cert',
+	'ssl.ca.location' : './ca-cert',
 	'sasl.mechanisms' : 'PLAIN',
 	'sasl.username' : config['sasl_plain_username'],
 	'sasl.password' : config['sasl_plain_password'],
-  'group.id' : config['consumer_id']
+    'group.id' : config['consumer_id']
 });
 
 
@@ -41,9 +42,12 @@ consumer.on('event.log', function(event) {
       console.log("event.log", event);
 });
 
-consumer.on("error", function(error) {
+consumer.on('error', function(error) {
 	console.log("error:" + error);
 });
 
+consumer.on('event', function(event) {
+        console.log("event:" + event);
+});
 
 

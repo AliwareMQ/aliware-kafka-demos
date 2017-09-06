@@ -1,7 +1,7 @@
 
 const Kafka = require('node-rdkafka');
 const config = require('./setting');
-console.log(Kafka.features);
+console.log("features:" + Kafka.features);
 console.log(Kafka.librdkafkaVersion);
 
 var producer = new Kafka.Producer({
