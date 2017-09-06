@@ -4,6 +4,7 @@ const config = require('./setting');
 console.log(Kafka.features);
 console.log(Kafka.librdkafkaVersion);
 
+//该函数每次都会创建producer进行发送，性能可能较差，但是使用简答，仅供参考
 var produceMessages = function(msgs) {
   return new Promise(function(resolve, reject) {
     let msgsCount = 1;
