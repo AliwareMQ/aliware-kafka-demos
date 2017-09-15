@@ -8,7 +8,7 @@ $conf->set('api.version.request', 'true');
 $conf->set('sasl.username', $setting['sasl_plain_username']);
 $conf->set('sasl.password', $setting['sasl_plain_password']);
 $conf->set('security.protocol', 'SASL_SSL');
-$conf->set('ssl.ca.location', __DIR__ . '/ca-cert.pem');
+$conf->set('ssl.ca.location', __DIR__ . '/ca-cert');
 $conf->set('message.send.max.retries', 5);
 $rk = new RdKafka\Producer($conf);
 $rk->setLogLevel(LOG_DEBUG);
