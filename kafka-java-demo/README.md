@@ -76,6 +76,13 @@ SecretKey="XXX";
 2. bootstrap.servers请根据region进行选择，region对应列表在[上一层目录的README](https://github.com/AliwareMQ/aliware-kafka-demos)
 3. 其它参数遵照[Kafka官网](https://kafka.apache.org/0101/documentation.html)说明即可
 
+### 报错“Failed to send SSL close message”
+该错误后面通常还会跟“connection reset by peer”或“broken pipe”。该错误可以忽略，不影响使用。服务端是VIP网络环境，会主动掐掉空闲连接。
+你可以通过修改日志级别来避免该错误，以log4j为例，加上下面这行配置：
+`log4j.logger.org.apache.kafka.common.network.SslTransportLayer=ERROR`
+
+
+
 
 
 	

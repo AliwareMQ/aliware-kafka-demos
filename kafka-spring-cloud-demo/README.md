@@ -1,4 +1,4 @@
-Spring Cloud Kafka Demo
+Spring Cloud Stream Kafka Demo
 ==========
 Demo project of Spring Cloud Stream with [Aliyun Kafka](https://help.aliyun.com/document_detail/52374.html?spm=5176.product29530.6.559.4WA0eL)
 使用前请先阅读[上一层目录的README](https://github.com/AliwareMQ/aliware-kafka-demos)
@@ -28,4 +28,10 @@ org.springframework.context.ApplicationListener=com.alibaba.cloud.KafkaConfigLis
 ### 2. SSL配置Kafka属性
 将src/main/resources/kafka.client.truststore.jks放在某个目录下，然后参考
 application.properties进行配置
+
+## 报错“Failed to send SSL close message”
+该错误后面通常还会跟“connection reset by peer”或“broken pipe”。该错误可以忽略，不影响使用。服务端是VIP网络环境，会主动掐掉空闲连接。
+你可以通过修改日志级别来避免该错误，以log4j为例，加上下面这行配置：
+`log4j.logger.org.apache.kafka.common.network.SslTransportLayer=ERROR`
+
 

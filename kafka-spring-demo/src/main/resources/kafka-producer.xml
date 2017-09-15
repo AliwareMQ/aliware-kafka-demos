@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 这个bean一定要放在最前面-->
+    <bean id="kafkaSaslConfig" class="com.aliyun.openservices.kafka.ons.KafkaSaslConfig"></bean>
+    <!-- 定义producer的参数 -->
+    <bean id="producerProperties" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="bootstrap.servers" value="kafka-ons-internet.aliyun.com:8080"/>
+                <!--请修改为自己的路径，最好是绝对路径-->
+                <entry key="ssl.truststore.location" value="{XXX,你自己的路径}/kafka.client.truststore.jks"/>
+                <entry key="ssl.truststore.password" value="KafkaOnsClient"/>
+                <entry key="security.protocol" value="SASL_SSL"/>
+                <entry key="sasl.mechanism" value="ONS"/>
+                <entry key="retries" value="10"/>
+                <entry key="batch.size" value="16384"/>
+                <entry key="linger.ms" value="1"/>
+                <entry key="buffer.memory" value="33554432"/>
+                <entry key="key.serializer" value="org.apache.kafka.common.serialization.StringSerializer"/>
+                <entry key="value.serializer" value="org.apache.kafka.common.serialization.StringSerializer"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 创建kafkatemplate需要使用的producerfactory bean -->
+    <bean id="producerFactory" class="org.springframework.kafka.core.DefaultKafkaProducerFactory">
+        <constructor-arg>
+            <ref bean="producerProperties"/>
+        </constructor-arg>
+    </bean>
+
+    <!-- 创建kafkatemplate bean，使用的时候，只需要注入这个bean，即可使用template的send消息方法 -->
+    <bean id="KafkaTemplate" class="org.springframework.kafka.core.KafkaTemplate">
+        <constructor-arg ref="producerFactory"/>
+        <constructor-arg value="true"/>
+        <property name="defaultTopic" value="{XXX,你申请的Topic}"/>
+    </bean>
+
+</beans>
