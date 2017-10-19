@@ -7,8 +7,8 @@ console.log(config)
 
 var consumer = new Kafka.KafkaConsumer({
 	/*'debug': 'all',*/ 
-  'api.version.request': 'true',
-	'bootstrap.servers': config['bootstrap.servers'],
+    'api.version.request': 'true',
+	'bootstrap.servers': config['bootstrap_servers'],
 	'security.protocol' : 'sasl_ssl',
 	'ssl.ca.location' : './ca-cert',
 	'sasl.mechanisms' : 'PLAIN',
