@@ -9,7 +9,6 @@
 5. 各类客户端的详细接入请参考具体仓库目录，如kafka-java-demo
 6. 附各region域名列表(bootstrap.servers)
 
-
 | Region | 域名 |
 | --- | --- |
 | 公网 | kafka-ons-internet.aliyun.com:8080 |
@@ -17,6 +16,8 @@
 | 华北2 | kafka-cn-beijing.aliyun.com:8080  |
 | 华东2 | kafka-cn-shanghai.aliyun.com:8080 |
 | 华南1 | kafka-cn-shenzhen.aliyun.com:8080 |
+
+**注意：除了公网，其它Region都需要在对应Region的ECS上面访问；比如华东1的topic，需要在华东1的ECS上面才能访问；**
 
 
 #### 接入优势
@@ -34,14 +35,7 @@
 
 #### 附主子账号的使用说明
 
-生产过程中，通常会使用到主账号与子账号(RAM账号)，使用规则如下
-1. Topic必须由主账号创建；使用时，可以主账号自己使用，也可以授权给子账号使用
-2. ConsumerID是谁创建谁使用；主账号创建的ConsumerID不能给子账号使用，反之亦然
-3. 请仔细检查AccessKey、SecretKey来自哪个账号，避免用错；
-
-注：最近阿里云RAM子账号系统有升级，Kafka公网集群已同步升级，非公网Region升级在安排中；如果是在非公网region着急使用，需要先取消对子账号的MQ授权策略，然后按照上面的描述操作；
-
-
+主子账号，建议使用[RAM授权策略](https://help.aliyun.com/document_detail/61382.html)
 	
 
 
