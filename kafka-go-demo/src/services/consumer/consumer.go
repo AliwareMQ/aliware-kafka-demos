@@ -75,16 +75,16 @@ func consume() {
 		case msg, more := <-consumer.Messages():
 			if more {
 
-				fmt.Println("kafka consumer msg: %v\n", *msg)
+				fmt.Printf("kafka consumer msg: %v\n", *msg)
 				consumer.MarkOffset(msg, "") // mark message as processed
 			}
 		case err, more := <-consumer.Errors():
 			if more {
-				fmt.Println("Kafka consumer error: %v\n", err.Error())
+				fmt.Printf("Kafka consumer error: %v\n", err.Error())
 			}
 		case ntf, more := <-consumer.Notifications():
 			if more {
-				fmt.Println("Kafka consumer rebalance: %v\n", ntf)
+				fmt.Printf("Kafka consumer rebalance: %v\n", ntf)
 			}
 		case <-sig:
 			fmt.Errorf("Stop consumer server...")
