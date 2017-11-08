@@ -25,7 +25,7 @@ Maven方式：
 <dependency>
      	<groupId>org.apache.kafka</groupId>
      	<artifactId>kafka-clients</artifactId>
-     	<version>0.10.1.0</version>
+     	<version>0.10.0.0</version>
 </dependency>
 <dependency>
 <groupId>com.aliyun.openservices</groupId>

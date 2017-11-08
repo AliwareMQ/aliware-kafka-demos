@@ -2,6 +2,7 @@ Spring Cloud Stream Kafka Demo
 ==========
 Demo project of Spring Cloud Stream with [Aliyun Kafka](https://help.aliyun.com/document_detail/52374.html?spm=5176.product29530.6.559.4WA0eL)
 使用前请先阅读[上一层目录的README](https://github.com/AliwareMQ/aliware-kafka-demos)
+注意：本Demo仅适用于Spring Cloud Camden.SR5版本，其它版本的配置略有差异，请参考官方文档进行调整
 ## Demo跑起来
 1. 将项目导入IDE(如MyEclipse, IntelliJ)中
 2. 添加自己的AccessKey，SecretKey到src/main/resources/kafka_client_jaas.conf中
