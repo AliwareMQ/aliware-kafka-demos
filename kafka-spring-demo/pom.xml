@@ -15,7 +15,7 @@
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
-            <version>2.0.0.RELEASE</version>
+            <version>1.2.3.RELEASE</version>
             <exclusions>
                 <!-- 建议这里排除掉Kafka依赖，避免版本问题带来困扰-->
                 <exclusion>
