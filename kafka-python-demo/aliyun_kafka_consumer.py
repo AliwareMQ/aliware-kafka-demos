@@ -25,13 +25,7 @@ consumer = KafkaConsumer(bootstrap_servers=conf['bootstrap_servers'],
                         sasl_plain_username=conf['sasl_plain_username'],
                         sasl_plain_password=conf['sasl_plain_password'])
 
-available_topics = consumer.topics()
-print available_topics
-
-if conf['topic_name'] in available_topics:
-    print 'consumer start to consuming...'
-    consumer.subscribe((conf['topic_name'], ))
-    for message in consumer:
-        print message.topic, message.offset, message.key, message.value, message.value, message.partition
-else:
-    print 'Topic %s is not available' % conf['topic_name']
+print 'consumer start to consuming...'
+consumer.subscribe((conf['topic_name'], ))
+for message in consumer:
+    print message.topic, message.offset, message.key, message.value, message.value, message.partition
