@@ -1,6 +1,8 @@
 package com.aliyun.openservices.kafka.ons;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -31,7 +33,11 @@ public class KafkaConsumerDemo {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(ConsumerConfig.GROUP_ID_CONFIG, System.getProperty("kafka.ons.CID","kafka-test-group"));
         KafkaConsumer<String, String> consumer = new org.apache.kafka.clients.consumer.KafkaConsumer<String, String>(props);
-        consumer.subscribe(Collections.singletonList(topic));
+        List<String> subscribedTopics =  new ArrayList<String>();
+        //如果需要订阅多个Topic，则在这里add进去即可
+        //subscribedTopics.add(topic1);
+        subscribedTopics.add(topic);
+        consumer.subscribe(subscribedTopics);
         while (true){
             ConsumerRecords<String, String> records = consumer.poll(200);
             for (ConsumerRecord<String, String> record : records) {
