@@ -34,11 +34,11 @@ public class KafkaProducerDemo {
         String  topic = System.getProperty("kafka.ons.TOPIC", "kafka-ons-test-1");
 
         Future<RecordMetadata> metadataFuture = producer.send(new ProducerRecord<String, String>(
-            topic,
-            null,
-            System.currentTimeMillis(),
-            String.valueOf(message.hashCode()),
-            message));
+            topic, //消息所属的Topic
+            null, //消息所属的分区，建议为null，交由系统自动分配
+            System.currentTimeMillis(),//消息的生产时间，如果为null，则由系统取当前时间
+            String.valueOf(message.hashCode()), //消息的Key，可以为null
+            message));   //消息的value，建议不要为null
         try {
             RecordMetadata recordMetadata = metadataFuture.get();
             System.out.println("produce ok:" + recordMetadata.toString());
