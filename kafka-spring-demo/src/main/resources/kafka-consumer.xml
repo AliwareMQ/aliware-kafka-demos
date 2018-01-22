@@ -43,7 +43,9 @@
     <bean id="containerProperties" class="org.springframework.kafka.listener.config.ContainerProperties">
         <constructor-arg>
             <array>
-                <value>{XXX,控制台申请的Topic}</value>
+                <!--这里可以指定多个Topic，增加value项即可-->
+                <value>{XXX,控制台申请的Topic1}</value>
+                <value>{XXX,控制台申请的Topic2}</value>
             </array>
         </constructor-arg>
         <property name="messageListener" ref="consumerMessageListener"/>

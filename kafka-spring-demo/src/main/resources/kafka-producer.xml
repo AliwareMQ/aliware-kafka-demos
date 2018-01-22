@@ -40,6 +40,7 @@
     <bean id="KafkaTemplate" class="org.springframework.kafka.core.KafkaTemplate">
         <constructor-arg ref="producerFactory"/>
         <constructor-arg value="true"/>
+        <!--这里填的是默认Topic，实际发送时，可以指定Topic发送，如果没指定，则默认发送到该Topic-->
         <property name="defaultTopic" value="{XXX,你申请的Topic}"/>
     </bean>
 
