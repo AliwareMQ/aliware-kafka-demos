@@ -35,7 +35,6 @@ public class MessageOutputTest {
     @Test
     public void testSend() {
         Message<String> message = MessageBuilder.withPayload("Hello Aliyun Kafka")
-                .setHeader(KafkaHeaders.MESSAGE_KEY, "1".getBytes())
                 .build();
         source.output().send(message);
         mySource.output().send(message);
