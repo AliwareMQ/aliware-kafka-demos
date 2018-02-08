@@ -43,7 +43,6 @@ public class KafkaConsumerDemo {
             for (ConsumerRecord<String, String> record : records) {
                 System.out.println(String.format("Consume partition:%d offset:%d", record.partition(), record.offset()));
             }
-            consumer.commitSync();
         }
     }
 }
