@@ -42,7 +42,7 @@ producer.on('ready', function() {
       // Message to send. Must be a buffer
       new Buffer('Hello Ali Kafka'),
       // for keyed messages, we also specify the key - note that this field is optional
-      'Ali',
+      null,
       // you can send a timestamp here. If your broker version supports it,
       // it will get added. Otherwise, we default to 0
       Date.now()
