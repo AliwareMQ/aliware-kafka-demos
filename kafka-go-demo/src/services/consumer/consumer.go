@@ -53,16 +53,12 @@ func init() {
 
 	clusterCfg.Version = sarama.V0_10_0_0
 	if err = clusterCfg.Validate(); err != nil {
-		msg := fmt.Sprintf("Kafka consumer config invalidate. config: %v. err: %v", *clusterCfg, err)
-		fmt.Println(msg)
-		panic(msg)
+		log.Panicf("Kafka consumer config invalidate. config: %v. err: %v", *clusterCfg, err)
 	}
 
 	consumer, err = cluster.NewConsumer(cfg.Servers, cfg.ConsumerId, cfg.Topics, clusterCfg)
 	if err != nil {
-		msg := fmt.Sprintf("Create kafka consumer error: %v. config: %v", err, clusterCfg)
-		fmt.Println(msg)
-		panic(msg)
+		log.Panicf("Create kafka consumer error: %v. config: %v", err, clusterCfg)
 	}
 
 	sig = make(chan os.Signal, 1)
@@ -79,16 +75,16 @@ func consume() {
 		case msg, more := <-consumer.Messages():
 			if more {
 
-				fmt.Println("kafka consumer msg: %v", *msg)
+				fmt.Printf("kafka consumer msg: %v\n", *msg)
 				consumer.MarkOffset(msg, "") // mark message as processed
 			}
 		case err, more := <-consumer.Errors():
 			if more {
-				fmt.Println("Kafka consumer error: %v", err.Error())
+				fmt.Printf("Kafka consumer error: %v\n", err.Error())
 			}
 		case ntf, more := <-consumer.Notifications():
 			if more {
-				fmt.Println("Kafka consumer rebalance: %v", ntf)
+				fmt.Printf("Kafka consumer rebalance: %v\n", ntf)
 			}
 		case <-sig:
 			fmt.Errorf("Stop consumer server...")
