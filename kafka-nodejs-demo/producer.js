@@ -4,17 +4,17 @@ const config = require('./setting');
 console.log("features:" + Kafka.features);
 console.log(Kafka.librdkafkaVersion);
 
-var producer = new Kafka.Producer({
-	/*'debug': 'all', */
-    'api.version.request': 'true',
-    'bootstrap.servers': config['bootstrap_servers'],
-    'dr_cb': true,
-    'dr_msg_cb': true,
-    'security.protocol' : 'sasl_ssl',
-	'ssl.ca.location' : './ca-cert',
-	'sasl.mechanisms' : 'PLAIN',
-	'sasl.username' : config['sasl_plain_username'],
-	'sasl.password' : config['sasl_plain_password']
+let producer = new Kafka.Producer({
+  /*'debug': 'all', */
+  'api.version.request': 'true',
+  'bootstrap.servers': config['bootstrap_servers'],
+  'dr_cb': true,
+  'dr_msg_cb': true,
+  'security.protocol' : 'sasl_ssl',
+  'ssl.ca.location' : './ca-cert',
+  'sasl.mechanisms' : 'PLAIN',
+  'sasl.username' : config['sasl_plain_username'],
+  'sasl.password' : config['sasl_plain_password']
 });
 
 var connected = false
@@ -57,8 +57,7 @@ producer.on('ready', function() {
 
 producer.on("disconnected", function() {
   connected = false;
-  //断线自动重连
-  producer.connect();
+  console.log("producer disconnected");
 })
 
 producer.on('event.log', function(event) {
@@ -75,10 +74,8 @@ producer.on('delivery-report', function(err, report) {
 });
 // Any errors we encounter, including connection errors
 producer.on('event.error', function(err) {
-  //AliKafka服务器会主动掐掉空闲连接，如果发现这个异常，则客户端重连(先disconnect再connect)
-  if (-1 == err.code) {
-      producer.disconnect();
-  } else {
+  // AliKafka 服务器会主动掐掉空闲连接. 连接池会主动发起重连, 无须人工干预
+  if (-1 !== err.code) {
      console.error('event.error:' + err);
   }
 })

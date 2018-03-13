@@ -8,10 +8,15 @@
 
 ## 运行Demo
 1. 请确保安装了Node环境
-2. export LDFLAGS="-L/usr/local/opt/openssl/lib"; export CPPFLAGS="-I/usr/local/opt/openssl/include"; npm install node-rdkafka
-3. 按照本页下面配置说明配置producer.js与consumer.js
+2. 执行 `npm install` 安装依赖包
+3. 按照本页下面配置说明配置 producer.js 与 consumer.js
 4. 生产: node producer.js
 5. 消费: node consumer.js
+
+Demo 中使用的 node_rdkafka 版本为 v2.3.0         
+Demo 在 node.js v8.9.1 环境下验证     
+Demo 在 librdkafka v0.11.3 下验证
+ 
 
 ### 配置说明
 
@@ -26,12 +31,11 @@
 
 
 ### 特别说明
-阿里云Kafka服务会主动掐掉空闲连接。Node.js客户端无法自适应该问题，需要手动干预。
+~~阿里云Kafka服务会主动掐掉空闲连接。Node.js客户端无法自适应该问题，需要手动干预。
 如果遇到该情况，主动disconnect再connect可以规避此类问题（请参考producer.js）。
-本Demo代码，仅作为Demo使用，实际生产时请参考该Demo进行调试。
-
-
-
+本Demo代码，仅作为Demo使用，实际生产时请参考该Demo进行调试。~~    
+阿里云Kafka服务会主动掐掉空闲连接, 但 node_rdkafka 自身能够处理断线重连问题,
+因此不需要手动干预. 根据自己需要决定是否将断线重连的错误报警信息打印出来即可.
 
 
 
