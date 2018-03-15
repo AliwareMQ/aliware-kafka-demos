@@ -93,9 +93,7 @@ var produceMessages = function(msgs) {
     // Any errors we encounter, including connection errors
     producer.on('event.error', function(err) {
       //AliKafka服务器会主动掐掉空闲连接，如果发现这个异常，则客户端重连(先disconnect再connect)
-      if (-1 == err.code) {
-          producer.disconnect();
-      } else {
+      if (-1 !== err.code) {
          console.error('event.error:' + err);
       }
     })

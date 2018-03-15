@@ -15,6 +15,7 @@ var consumer = new Kafka.KafkaConsumer({
 	'sasl.username' : config['sasl_plain_username'],
 	'sasl.password' : config['sasl_plain_password'],
     'group.id' : config['consumer_id']
+  // 'enable.auto.commit': false  // 如果需要自己控制消息消费状态,请将自动提交置为 false
 });
 
 
