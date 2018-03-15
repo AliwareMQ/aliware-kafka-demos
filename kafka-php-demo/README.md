@@ -1,5 +1,15 @@
-### 接入说明
 
+### 重要建议
+PHP客户建议使用[MNS](https://www.aliyun.com/product/mns)的HTTP协议接入。
+主要原因是：
+
+* Kafka是一个长连接的服务，频繁的创建连接和关闭连接会影响服务端的稳定性，因此服务端对单客户机器IP的连接数上限做了严格限制，目前是不得超过50；
+* PHP有一个固有的问题，难以做到连接共享，每发一条消息，创建一个Producer，也即创建新连接，是一种效率极低的方式，会造成延迟很大，效率很低；
+
+综上，PHP客户建议使用MNS。
+
+
+### 接入说明
 1. 请先阅读[上一层目录的README](https://github.com/AliwareMQ/aliware-kafka-demos)
 2. 遇到问题先参考[Kafka常见报错及排查](https://help.aliyun.com/document_detail/57058.html)
 3. 欢迎加钉钉群咨询，用钉钉扫描[群二维码](http://img3.tbcdn.cn/5476e8b07b923/TB1HEQgQpXXXXbdXVXXXXXXXXXX) 
