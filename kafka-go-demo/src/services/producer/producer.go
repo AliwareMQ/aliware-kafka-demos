@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"services"
+    "time"
+    "strconv"
 
 	"github.com/Shopify/sarama"
 )
@@ -15,12 +17,12 @@ var producer sarama.SyncProducer
 
 func init() {
 
-	fmt.Print("init kafka producer\n")
+	fmt.Print("init kafka producer, it may take a few seconds to init the connection\n")
 
 	var err error
 
 	cfg = &configs.MqConfig{}
-	configs.LoadJsonConfig(cfg, "mq.json")
+	configs.LoadJsonConfig(cfg, "kafka.json")
 
 	mqConfig := sarama.NewConfig()
 	mqConfig.Net.SASL.Enable = true
@@ -68,15 +70,19 @@ func produce(topic string, key string, content string) error {
 
 	_, _, err := producer.SendMessage(msg)
 	if err != nil {
-		msg := fmt.Sprintf("Kafka send message error. topic: %v. key: %v. content: %v", topic, key, content)
+		msg := fmt.Sprintf("Send Error topic: %v. key: %v. content: %v", topic, key, content)
 		fmt.Println(msg)
 		return err
 	}
+    fmt.Printf("Send OK topic:%s key:%s value:%s\n", topic, key, content)
 
 	return nil
 }
 
 func main() {
-	produce(cfg.Topics[0], "1", "this is a kafka message!!!!!")
-    fmt.Printf("Send OK key:%s value:%s\n", "1", "this is a kafka message!!!!!")
+    //the key of the kafka messages 
+    //do not set the same the key for all messages, it may cause partition im-balance 
+    key := strconv.FormatInt(time.Now().UTC().UnixNano(), 10)
+    value := "this is a kafka message!"
+	produce(cfg.Topics[0], key, value)
 }

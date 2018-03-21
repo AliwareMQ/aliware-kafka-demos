@@ -19,12 +19,12 @@ var consumer *cluster.Consumer
 var sig chan os.Signal
 
 func init() {
-	fmt.Println("init kafka consumer")
+	fmt.Println("init kafka consumer, it may take a few seconds...")
 
 	var err error
 
 	cfg := &configs.MqConfig{}
-	configs.LoadJsonConfig(cfg, "mq.json")
+	configs.LoadJsonConfig(cfg, "kafka.json")
 
 	clusterCfg := cluster.NewConfig()
 
@@ -78,8 +78,7 @@ func consume() {
 		select {
 		case msg, more := <-consumer.Messages():
 			if more {
-
-				fmt.Println("kafka consumer msg: %v", *msg)
+                fmt.Printf("Partition:%d, Offset:%d, Key:%s, Value:%s \n", msg.Partition, msg.Offset, string(msg.Key), string(msg.Value))
 				consumer.MarkOffset(msg, "") // mark message as processed
 			}
 		case err, more := <-consumer.Errors():

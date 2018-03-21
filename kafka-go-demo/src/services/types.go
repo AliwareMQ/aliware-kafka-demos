@@ -3,8 +3,8 @@ package configs
 type MqConfig struct {
 	Topics     []string `json:"topics"`
 	Servers    []string `json:"servers"`
-	Ak         string   `json:"ak"`
+	Ak         string   `json:"username"`
 	Password   string   `json:"password"`
-	ConsumerId string   `json:"consumerId"`
+	ConsumerId string   `json:"consumerGroup"`
 	CertFile   string   `json:"cert_file"`
 }

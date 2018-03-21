@@ -1,8 +1,8 @@
 {
   "topics": ["XXX"],
   "servers": ["XXX:8080"],
-  "ak": "XXX",
+  "username": "XXX",
   "password": "XXX",
-  "consumerId": "CID_XXX",
+  "consumerGroup": "XXX",
   "cert_file": "ca-cert"
 }
