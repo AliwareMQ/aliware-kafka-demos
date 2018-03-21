@@ -15,7 +15,7 @@
 6. go install services
 7. go install services/producer
 8. go install services/consumer
-9. 按照本页下面配置说明配置conf/mq.json
+9. 按照本页下面配置说明配置conf/kafka.json
 10. 生产(没报错说明OK): ./bin/producer
 11. 消费(没报错说明OK)：./bin/consumer
 
