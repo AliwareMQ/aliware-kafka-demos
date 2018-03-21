@@ -23,12 +23,12 @@
 
 | demo中配置文件 | 配置项 | 说明 |
 | --- | --- | --- |
-| conf/mq.json | topics | 请修改为[AliwareMQ控制台](https://help.aliyun.com/document_detail/29536.html)上申请的Topic(类型为Kafka消息) |
-| conf/mq.json | servers | 请根据[region列表](https://github.com/AliwareMQ/aliware-kafka-demos)进行选取 |
-| conf/mq.json  | ak | 请修改为阿里云账号的AccessKey |
-| conf/mq.json  | password | 请修改为阿里云账号的SecretKey的后10位 |
-| conf/mq.json  | consumerId | 请修改为[AliwareMQ控制台](https://help.aliyun.com/document_detail/29536.html)上申请的ConsumerID |
-| conf/mq.json  | cert_file | 根证书路径，运行Demo时无需修改，实际部署时注意相对路径 |
+| conf/kafka.json | topics | 请修改为[AliwareMQ控制台](https://help.aliyun.com/document_detail/29536.html)上申请的Topic(类型为Kafka消息) |
+| conf/kafka.json | servers | 请根据[region列表](https://github.com/AliwareMQ/aliware-kafka-demos)进行选取 |
+| conf/kafka.json  | username | 请修改为阿里云账号的AccessKey |
+| conf/kafka.json  | password | 请修改为阿里云账号的SecretKey的后10位 |
+| conf/kakfa.json  | consumerGroup | 请修改为[AliwareMQ控制台](https://help.aliyun.com/document_detail/29536.html)上申请的ConsumerID |
+| conf/kafka.json  | cert_file | 根证书路径，运行Demo时无需修改，实际部署时注意相对路径 |
 
 
 
