@@ -54,6 +54,7 @@ public class KafkaProducerDemo {
             RecordMetadata recordMetadata = metadataFuture.get();
             System.out.println("Produce ok:" + recordMetadata.toString());
         } catch (Exception e) {
+            //要考虑重试
             System.out.println("error occurred");
             e.printStackTrace();
         }
