@@ -70,17 +70,12 @@ producer.on("error", function(error) {
 });
 
 producer.on('delivery-report', function(err, report) {
-  //消息发送成功，这里会收到report
-  console.log("delivery-report: producer ok");
+    //消息发送成功，这里会收到report
+    console.log("delivery-report: producer ok");
 });
 // Any errors we encounter, including connection errors
 producer.on('event.error', function(err) {
-  //AliKafka服务器会主动掐掉空闲连接，如果发现这个异常，则客户端重连(先disconnect再connect)
-  if (-1 == err.code) {
-      producer.disconnect();
-  } else {
-     console.error('event.error:' + err);
-  }
+    console.error('event.error:' + err);
 })
 
 
