@@ -1,5 +1,9 @@
+# Run Demo
 
-
+1. 安装软件：确保安装了 JDK 8+ 和 Maven 3.2.5+
+2. 编写配置：按照本页下面的接入说明配置`src/main/resource/kafka.properties`
+3. 发送消息：sh run_producer.sh
+4. 消费消息：sh run_consumer.sh
 
 
 # Java SDK接入说明
