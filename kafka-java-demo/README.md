@@ -79,19 +79,24 @@ kafka\_client\_jaas.conf的路径是**系统变量**，有两种办法进行设�
 
 ```
 ## 接入点，通过控制台获取
-bootstrap.servers=XXX
+## 您在控制台获取的接入点
+bootstrap.servers=kafka-cn-internet.aliyun.com:8080
 
 ## Topic，通过控制台创建
-topic=XXX
+## 您在控制台创建的Topic
+topic=alikafka-topic-demo
 
-## ConsumerGrouo，通过控制台创建
-group.id=XXX
+## Consumer Grouo，通过控制台创建
+## 您在控制台创建的 Consumer Group
+group.id=CID-consumer-group-demo
 
 ## ssl 根证书的路径，demo中有，请拷贝到自己的某个目录下，不能被打包到jar中
-ssl.truststore.location=XXX/kafka.client.truststore.jks
+## 这里假设您的目录为/home/admin，请记得修改为自己的实际目录
+ssl.truststore.location=/home/admin/kafka.client.truststore.jks
 
 ## sasl路径，demo中有，请拷贝到自己的某个目录下，不能被打包到jar中
-java.security.auth.login.config=XXX/kafka_client_jaas.conf
+## 这里假设您的目录为/home/admin，请记得修改为自己的实际目录
+java.security.auth.login.config=/home/admin/kafka_client_jaas.conf
 ```
 4.2 加载配置文件
 
