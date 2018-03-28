@@ -55,6 +55,7 @@ public class KafkaProducerDemo {
             System.out.println("Produce ok:" + recordMetadata.toString());
         } catch (Exception e) {
             //要考虑重试
+            //参考常见报错: https://help.aliyun.com/document_detail/68168.html?spm=a2c4g.11186623.6.567.2OMgCB
             System.out.println("error occurred");
             e.printStackTrace();
         }

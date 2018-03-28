@@ -70,6 +70,7 @@ public class KafkaConsumerDemo {
                 } catch (Throwable ignore) {
 
                 }
+                //参考常见报错: https://help.aliyun.com/document_detail/68168.html?spm=a2c4g.11186623.6.567.2OMgCB
                 e.printStackTrace();
             }
         }
