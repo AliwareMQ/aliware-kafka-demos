@@ -13,6 +13,7 @@
     <bean id="consumerProperties" class="java.util.HashMap">
         <constructor-arg>
             <map>
+                <!--请修改为控制台获取的接入点-->
                 <entry key="bootstrap.servers" value="kafka-ons-internet.aliyun.com:8080"/>
                 <!--请修改为自己的路径，最好是绝对路径-->
                 <entry key="ssl.truststore.location" value="{XXX,你自己的路径}/kafka.client.truststore.jks"/>

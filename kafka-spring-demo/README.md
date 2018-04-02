@@ -1,8 +1,4 @@
 ## KafkaOnsDemo
-	
-### 接入说明
-
-请先阅读[上一层目录的README](https://github.com/AliwareMQ/aliware-kafka-demos)
 
 
 ### 接入步骤四：配置参数
@@ -13,8 +9,9 @@
 |kafka_client_jaas.conf|AccessKey|阿里云账号的AccessKey|
 |kafka_client_jaas.conf|SecretKey|阿里云账号的SecretKey|
 |producer/consumer.xml|ssl.truststore.location|{XXX，自己的路径}/kafka.client.truststore.jks|
-|producer/consumer.xml|group.id|请修改为[AliwareMQ控制台](https://help.aliyun.com/document_detail/29536.html)上申请的ConsumerID|
-|producer/consumer.xml|defaultTopic|请修改为[AliwareMQ控制台](https://help.aliyun.com/document_detail/29536.html)上申请的Topic(类型为Kafka消息)|
+|producer/consumer.xml|group.id|请参考文档[创建资源](https://help.aliyun.com/document_detail/68328.html?spm=a2c4g.11186623.6.549.xvKAt6)|
+|producer/consumer.xml|defaultTopic|请参考文档[创建资源](https://help.aliyun.com/document_detail/68328.html?spm=a2c4g.11186623.6.549.xvKAt6)|
+|producer/consumer.xml|bootstrap.servers|请参考文档[获取接入点](https://help.aliyun.com/document_detail/68342.html?spm=a2c4g.11186623.6.554.X2a7Ga)|
 
 除此之外，注意KafkaSaslConfig类的bean一定要配置在xml的最前方
 
