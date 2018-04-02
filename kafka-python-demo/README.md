@@ -7,6 +7,5 @@
 5. kafka-python这个库目前只支持SASL的PLAIN机制
 6. ca-cert是aliyun提供的证书
 7. 其它Kafka使用相关文档请参考[kafka-python项目地址](https://github.com/dpkp/kafka-python)和[Kafka官网](https://kafka.apache.org/0100/documentation.html)
-8. 遇到问题先参考[Kafka常见报错及排查](https://help.aliyun.com/document_detail/57058.html)
 
 
