@@ -1,7 +1,7 @@
 
 ## 准备客户端
 
-[Kafka 官网 Clients 列表](https://cwiki.apache.org/confluence/display/KAFKA/Clients#Clients-Go(AKAgolang)推荐使用[开源 sarama GO客户端](https://github.com/Shopify/sarama)进行接入。
+[Kafka 官网 Clients 列表](https://cwiki.apache.org/confluence/display/KAFKA/Clients#Clients-Go(AKAgolang)) 推荐使用 [开源 sarama GO客户端](https://github.com/Shopify/sarama)进行接入。
 
 ## 安装环境
 1. 请确保安装了 Go 环境，详情请前往 [golang 官网](https://golang.org "golang 官网") 参考；
