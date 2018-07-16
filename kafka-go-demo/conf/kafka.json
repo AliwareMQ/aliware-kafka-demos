@@ -1,6 +1,6 @@
 {
   "topics": ["XXX"],
-  "servers": ["XXX:8080"],
+  "servers": ["XXX:9092","XXX:9092"],
   "username": "XXX",
   "password": "XXX",
   "consumerGroup": "XXX",
