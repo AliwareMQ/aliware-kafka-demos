@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 定义consumer的参数 -->
+    <bean id="consumerProperties" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <!--请修改为控制台获取的接入点-->
+                <entry key="bootstrap.servers" value="XXX,你自己的接入点信息"/>
+                <!--请修改为自己的路径，最好是绝对路径-->
+                <entry key="group.id" value="{XXX,你在控制台申请的CID}"/>
+                <entry key="enable.auto.commit" value="true"/>
+                <entry key="auto.commit.interval.ms" value="1000"/>
+                <entry key="session.timeout.ms" value="15000"/>
+                <entry key="key.deserializer" value="org.apache.kafka.common.serialization.StringDeserializer"/>
+                <entry key="value.deserializer" value="org.apache.kafka.common.serialization.StringDeserializer"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- 创建consumerFactory bean -->
+    <bean id="consumerFactory" class="org.springframework.kafka.core.DefaultKafkaConsumerFactory">
+        <constructor-arg>
+            <ref bean="consumerProperties"/>
+        </constructor-arg>
+    </bean>
+
+    <!-- 实际执行消息消费的类 -->
+    <bean id="consumerMessageListener" class="com.aliyun.openservices.kafka.ons.ConsumerMessageListener"/>
+
+    <!-- 消费者容器配置信息 -->
+    <bean id="containerProperties" class="org.springframework.kafka.listener.config.ContainerProperties">
+        <constructor-arg>
+            <array>
+                <!--这里可以指定多个Topic，增加value项即可-->
+                <value>{XXX,控制台申请的Topic1}</value>
+            </array>
+        </constructor-arg>
+        <property name="messageListener" ref="consumerMessageListener"/>
+    </bean>
+
+    <!-- 创建kafkatemplate bean，使用的时候，只需要注入这个bean，即可使用template的send消息方法 -->
+    <bean id="messageListenerContainer" class="org.springframework.kafka.listener.KafkaMessageListenerContainer" init-method="doStart">
+        <constructor-arg ref="consumerFactory"/>
+        <constructor-arg ref="containerProperties"/>
+    </bean>
+
+</beans>

@@ -1,13 +1,12 @@
 # Run Demo
 
 1. 安装软件：确保安装了 JDK 8+ 和 Maven 3.2.5+
-2. 编写配置：按照本页下面的接入说明配置`src/main/resource/kafka.properties`
-3. 发送消息：sh run_producer.sh
-4. 消费消息：sh run_consumer.sh
+2. 编写配置：按照本页下面的接入说明配置`src/main/resource/kafka.properties`，然后修改kafka_client_jaas.conf中的用户名和密码
+3. 发送消息：sh run_demo.sh producer
+4. 消费消息：sh run_demo.sh consumer
 
 
 # Java SDK接入说明
-
 
 #### 1、Maven 依赖配置
 
@@ -19,31 +18,19 @@
        <version>0.10.0.0</version>
 </dependency>
 <dependency>
-//SASL鉴权使用的库
-<groupId>com.aliyun.openservices</groupId>
-      <artifactId>ons-sasl-client</artifactId>
-      <version>0.1</version>
-</dependency>
 ```
-
 #### 2、SASL 配置  
  
 消息队列 Kafka利用SASL机制对客户端进行身份验证。       
 ##### 2.1 创建文本文件 kafka\_client\_jaas.conf
-
-可以使用Demo库中的文件进行修改，内容形式如下：
+可以使用Demo库中的文件进行修改，用户名密码可在kafka控制台上的实例详情获取，内容形式如下：
 
 ```
 KafkaClient {
-
-   com.aliyun.openservices.ons.sasl.client.OnsLoginModule required
-
-   AccessKey="***"
-
-   SecretKey="***";
-
+  org.apache.kafka.common.security.plain.PlainLoginModule required
+  username="XXXXXXX"
+  password="XXXXXXX";
 };
-
 ```
   
 注意：把\*\*\*替换为阿里云账号的 AccessKey，SecretKey。
@@ -76,7 +63,6 @@ kafka\_client\_jaas.conf的路径是**系统变量**，有两种办法进行设�
 #### 4.示例代码
 
 4.1 准备配置文件kafka.properties，可以参考Demo中的进行修改
-
 ```
 ## 接入点，通过控制台获取
 ## 您在控制台获取的SSL接入点
@@ -101,32 +87,7 @@ java.security.auth.login.config=/home/admin/kafka_client_jaas.conf
 ```
 4.2 加载配置文件
 ```
-private static Properties properties;
-
-public static void configureSasl() {
-   //如果用-D或者其它方式设置过，这里不再设置
-   if (null == System.getProperty("java.security.auth.login.config")) {
-       //请注意将XXX修改为自己的路径
-       //这个路径必须是一个文件系统可读的路径，不能被打包到jar中
-       System.setProperty("java.security.auth.login.config", getKafkaProperties().getProperty("java.security.auth.login.config"));
-   }
-}
-
-public synchronized static Properties getKafkaProperties() {
-   if (null != properties) {
-       return properties;
-   }
-   //获取配置文件kafka.properties的内容
-   Properties kafkaProperties = new Properties();
-   try {
-       kafkaProperties.load(KafkaProducerDemo.class.getClassLoader().getResourceAsStream("kafka.properties"));
-   } catch (Exception e) {
-       //没加载到文件，程序要考虑退出
-       e.printStackTrace();
-   }
-   properties = kafkaProperties;
-   return kafkaProperties;
-}
+见 JavaKafkaConfigurer
 ```
 
 4.3 发送消息
