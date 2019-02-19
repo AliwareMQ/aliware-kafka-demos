@@ -1,0 +1,5 @@
+{
+  "topics": ["XXX"],
+  "servers": ["XXX:9092","XXX:9092","XXX:9092"],
+  "consumerGroup": "XXX"
+}

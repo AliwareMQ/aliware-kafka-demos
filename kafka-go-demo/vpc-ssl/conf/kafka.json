@@ -1,0 +1,8 @@
+{
+  "topics": ["XXX"],
+  "servers": ["XXX:9093","XXX:9093","XXX:9093"],
+  "username": "XXX",
+  "password": "XXX",
+  "consumerGroup": "XXX",
+  "cert_file": "ca-cert"
+}
