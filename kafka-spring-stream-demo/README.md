@@ -1,12 +1,12 @@
 ### 前言
-以下为使用spring-cloud-stream使用阿里云Kafka示例，其中示例分类为VPC内示例(内网)和公网SSL示例，可根据购买的实例信息选择相应实例运行。
+以下为使用spring-cloud-stream和阿里云Kafka收发消息示例，其中示例分类为VPC内示例(内网)和公网SSL示例，可根据购买的实例信息选择相应示例运行。
 
 ### 安装必备
 1. Maven 3.2.5+
 2. JDK 8+ 
 
 ### 示例简介
-以下以binder平台为阿里云kafka对示例进行简单的描述。样例工程中通过poller发送消息到，然后通过listener监听收取消息。
+以Binder平台为阿里云kafka对示例进行简单的描述。示例例工程中通过Spring-Integration-Poller发送消息到Kafka，然后通过Listener监听从Kafka收取消息。
 
 ![image](../images/spring-cloud-kafka-demo.png)
  
@@ -47,4 +47,5 @@ KafkaClient {
 ```
 
 ### 示例运行
+在相应示例目录下执行
 sh run_demo.sh 
