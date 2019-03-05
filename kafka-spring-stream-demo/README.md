@@ -1,5 +1,6 @@
 ### 前言
-以下为使用spring-cloud-stream和阿里云Kafka收发消息示例，其中示例分类为VPC内示例(内网)和公网SSL示例，可根据购买的实例信息选择相应示例运行。
+以下为使用spring-cloud-stream和阿里云Kafka收发消息示例，其中示例分类为VPC内示例(内网)和公网SSL示例，可根据购买的实例信息选择相应示例运行。[Spring-Cloud-Stream文档](https://docs.spring.io/spring-cloud-stream/docs/current/reference/htmlsingle/#spring-cloud-stream-overview-introducing)
+，更多配置可供参考构建健壮性和稳定性程序。
 
 ### 安装必备
 1. Maven 3.2.5+

@@ -23,3 +23,7 @@
 
 ### 阿里云Kafka文档
 参考文档[快速入门](https://help.aliyun.com/document_detail/99949.html?spm=a2c4g.11186623.6.554.2be1c453UXdc4D)
+
+### 问题答疑
+1. Demo主要目的是快速的使用阿里云Kafka，为保证客户端程序性能和稳定性建议从业务考虑参考官方参数进行一定的调整。
+2. 在使用阿里云Kafka的过程中的问题或者Demo问题，建议通过阿里云工单反馈，对issue不能很好的回复请见谅。
