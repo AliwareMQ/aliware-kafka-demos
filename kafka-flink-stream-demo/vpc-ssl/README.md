@@ -25,6 +25,11 @@
 ```
 sh run_demo.sh flinkConsumer
 确保服务启动没有报错退出，当topic中有新消息时，日志中会打印相关消费的消息
+注意: 如果觉得有太多的日志干扰显示，运行前可以设置target/AliKafkaFlinkDemo/AliKafkaFlinkDemo/conf/logback.xml的如下部分:
+	<root level="INFO">
+		<appender-ref ref="STDOUT" /> 删除此行
+		<appender-ref ref="FILE" />
+	</root>
 ```
 
 * 在新的终端中，运行下面的命令，向指定的Kafka topic内发送消息
