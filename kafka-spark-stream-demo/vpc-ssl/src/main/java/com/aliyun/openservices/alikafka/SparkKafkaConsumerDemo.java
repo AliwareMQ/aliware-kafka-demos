@@ -18,9 +18,8 @@ public class SparkKafkaConsumerDemo {
 
         Map<String, Object> kafkaParams = new HashMap<String, Object>();
 
-        // SASL_SSL 相关的设置
-        Map<String, String> saslConfig = AliKafkaConfigurer.saslSSLConfig();
-        kafkaParams.putAll(saslConfig);
+        //SASL_SSL 相关的设置, 如果在VPC内访问，可以注释掉下面的代码行
+        kafkaParams.putAll(AliKafkaConfigurer.saslSSLConfig());
 
         kafkaParams.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getProperty("bootstrap.servers"));
         kafkaParams.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");

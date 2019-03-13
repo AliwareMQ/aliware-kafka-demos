@@ -16,9 +16,8 @@ public class KafkaProducerDemo {
 
         Properties props = new Properties();
 
-        // SASL_SSL 相关的设置
-        Map<String, String> saslConfig = AliKafkaConfigurer.saslSSLConfig();
-        props.putAll(saslConfig);
+        //SASL_SSL 相关的设置, 如果在VPC内访问，可以注释掉下面的代码行
+        props.putAll(AliKafkaConfigurer.saslSSLConfig());
 
         //设置接入点，请通过控制台获取对应Topic的接入点
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getProperty("bootstrap.servers"));
