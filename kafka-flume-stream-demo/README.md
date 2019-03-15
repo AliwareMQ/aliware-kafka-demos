@@ -5,6 +5,7 @@
 ## 运行步骤
 
 ### 1. 安装Flume, 如[1.7](http://archive.apache.org/dist/flume/1.7.0/)
+* 由于目前推荐的Kafka客户端是0.10.0版本，所以要使用本工程lib/目录下的jar文件替换掉Flume里(FLUME-INSTALL-DIR/lib/)的相关的两个kafka包
 ### 2. 在AliKafka控制台上创建或确定要测试的实例，获取实例的如下信息:
 * SSL接入点地址 (或 默认接入点地址，如果是测试在vpc内访问的情况)
 * 例配置信息下获取用户名和密码 
