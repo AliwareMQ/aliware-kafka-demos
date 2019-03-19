@@ -1,0 +1,18 @@
+language: ruby
+
+rvm:
+  - 2.1
+  - 2.2
+  - 2.3.1
+  - 2.4.1
+  - ruby-head
+
+script:
+  - bundle exec rake test
+
+sudo: false
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+
