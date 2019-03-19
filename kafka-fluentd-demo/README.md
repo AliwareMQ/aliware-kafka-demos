@@ -26,7 +26,7 @@ c. 停止td-agent命令: sudo launchctl unload /Library/LaunchDaemons/td-agent.p
      | -- lib/kafka/protocol/
         | -- fetch_request.rb  [3] 
 ```
-在本demo目录下的对应目录结构下找到上述[1],[2],[3]文件，分别对安装目录下的三个文件进行修改或替换 （建议操作前对原始文件进行备份)，这三个文件修改的具体内容参见这个[git commit]()
+在本demo目录下的对应目录结构下找到上述[1],[2],[3]文件，分别对安装目录下的三个文件进行修改或替换 （建议操作前对原始文件进行备份)，这三个文件修改的具体内容参见这个[git commit](https://github.com/AliwareMQ/aliware-kafka-demos/commit/ad63e4e5449e485f48e14bcce9596a1ad96f8312)
 
 提示: 如果用户现场使用的Confluentd版本里使用的不是fluent-plugin-kafka-0.6.5和ruby-kafka-0.5.1，可以按照上面的commit检查相关的文件；如果有必要可以尝试使用demo目录下的相关文件进行替换整个目录，但并不能保证一定能工作。
 
