@@ -43,7 +43,8 @@ module Kafka
         encoder.write_int32(@replica_id)
         encoder.write_int32(@max_wait_time)
         encoder.write_int32(@min_bytes)
-        encoder.write_int32(@max_bytes)
+# AliKafka 0.10.0 does not support this max_bytes in datagram of fetch request
+#        encoder.write_int32(@max_bytes)
 
         encoder.write_array(@topics) do |topic, partitions|
           encoder.write_string(topic)

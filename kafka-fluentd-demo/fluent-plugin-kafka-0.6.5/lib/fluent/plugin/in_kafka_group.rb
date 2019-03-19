@@ -45,6 +45,8 @@ class Fluent::KafkaGroupInput < Fluent::Input
                :desc => "The number of messages that can be processed before their offsets are committed"
   config_param :start_from_beginning, :bool, :default => true,
                :desc => "Whether to start from the beginning of the topic or just subscribe to new messages being produced"
+  config_param :sasl_plain_username, :string, :default => nil
+  config_param :sasl_plain_password, :string, :default => nil
 
   include Fluent::KafkaPluginUtil::SSLSettings
   include Fluent::KafkaPluginUtil::SaslSettings
@@ -139,6 +141,7 @@ class Fluent::KafkaGroupInput < Fluent::Input
 
     @kafka = Kafka.new(seed_brokers: @brokers, client_id: @client_id,
                        ssl_ca_cert: read_ssl_file(@ssl_ca_cert),
+                       sasl_plain_username: @sasl_plain_username, sasl_plain_password: @sasl_plain_password,
                        ssl_client_cert: read_ssl_file(@ssl_client_cert),
                        ssl_client_cert_key: read_ssl_file(@ssl_client_cert_key),
                        sasl_gssapi_principal: @principal, sasl_gssapi_keytab: @keytab)
