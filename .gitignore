@@ -5,6 +5,7 @@ target/
 *.iml
 *.pyc
 node_modules/
+localbin
 
 ##ignore go
 bin/ 
