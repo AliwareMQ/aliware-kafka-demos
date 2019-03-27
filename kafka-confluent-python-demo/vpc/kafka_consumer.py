@@ -20,9 +20,9 @@ while True:
     if msg is None:
         continue
     if msg.error():
-	if msg.error().code() == KafkaError._PARTITION_EOF:
-		continue
-	else:
+	    if msg.error().code() == KafkaError._PARTITION_EOF:
+		    continue
+	    else:
         	print("Consumer error: {}".format(msg.error()))
         	continue
 
