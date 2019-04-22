@@ -8,7 +8,14 @@ Demo 的目的仅仅是把应用跑起来作为参考，更多参数和程序健
 sudo yum install gcc-c++
 ```
 
-2.添加 yum 仓库
+2.安装 SASL 和 SSL 库
+
+```
+yum install openssl openssl-devel
+yum install cyrus-sasl{,-plain}
+```
+
+3.添加 yum 仓库
 进入 /etc/yum.repos.d/ 目录，然后创建一个文件名为 confluent.repo，文件内包含以下内容：
 
 ```
@@ -27,7 +34,7 @@ gpgkey=https://packages.confluent.io/rpm/5.1/archive.key
 enabled=1
 ```
 
-3.执行安装命令
+4.执行安装命令
 ```
 sudo yum clean all && yum install librdkafka-devel
 ```
