@@ -1,8 +1,9 @@
 ### 运行Demo
-1. 本Demo基于开源客户端[php-rdkafka](https://github.com/arnaud-lb/php-rdkafka), 请先按照[installation guide](https://arnaud-lb.github.io/php-rdkafka/phpdoc/rdkafka.setup.html)安装相应模块（mac下可用brew安装，安装完后可能需要配置下php.ini），安装成功后调用php -m|grep kafka确认下
-2. 按照下面的配置说明，配置setting.php
-3. php kafka-producer.php  发送消息
-4. php kafka-consumer.php  消费消息
+1. 请先参考 CPP Demo 安装好 librdkafka 库
+2. 本Demo基于开源客户端[php-rdkafka](https://github.com/arnaud-lb/php-rdkafka), 请先按照[installation guide](https://arnaud-lb.github.io/php-rdkafka/phpdoc/rdkafka.setup.html)安装相应模块（安装完后可能需要配置下php.ini），安装成功后调用php -m|grep kafka确认下
+3. 按照下面的配置说明，配置setting.php
+4. php kafka-producer.php  发送消息
+5. php kafka-consumer.php  消费消息
 
 
 ### 配置说明
