@@ -3,15 +3,10 @@
 $setting = require __DIR__ . '/setting.php';
 
 $conf = new RdKafka\Conf();
-$conf->set('sasl.mechanisms', 'PLAIN');
 $conf->set('api.version.request', 'true');
-$conf->set('sasl.username', $setting['sasl_plain_username']);
-$conf->set('sasl.password', $setting['sasl_plain_password']);
-$conf->set('security.protocol', 'SASL_SSL');
-$conf->set('ssl.ca.location', __DIR__ . '/ca-cert.pem');
 $conf->set('message.send.max.retries', 5);
 $rk = new RdKafka\Producer($conf);
-# if want to debug, set log level to LOG_DEBUG
+## If want to debug, set log level to LOG_DEBUG
 $rk->setLogLevel(LOG_INFO);
 $rk->addBrokers($setting['bootstrap_servers']);
 $topic = $rk->newTopic($setting['topic_name']);
