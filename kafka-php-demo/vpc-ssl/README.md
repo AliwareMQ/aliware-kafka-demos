@@ -9,11 +9,11 @@
 
 | demo中配置文件 | 配置项 | 说明 |
 | --- | --- | --- |
-| setting.php | topic_name | 请修改为[AliwareMQ控制台](https://help.aliyun.com/document_detail/29536.html)上申请的Topic(类型为Kafka消息) |
-| setting.php | bootstrap_servers | 请根据[region列表](https://github.com/AliwareMQ/aliware-kafka-demos)进行选取 |
-| setting.php  | sasl_plain_username | 请修改为阿里云账号的AccessKey |
-| setting.php  | sasl_plain_password | 请修改为阿里云账号的SecretKey的后10位 |
-| setting.php  | consumer_id | 请修改为[AliwareMQ控制台](https://help.aliyun.com/document_detail/29536.html)上申请的ConsumerID |
+| setting.php | topic_name | 请参考文档[创建资源](https://help.aliyun.com/document_detail/68328.html?spm=a2c4g.11186623.6.549.xvKAt6) |
+| setting.php  | consumer_id | 请参考文档[创建资源](https://help.aliyun.com/document_detail/68328.html?spm=a2c4g.11186623.6.549.xvKAt6)|
+| setting.php | bootstrap_servers | 请参考文档[获取接入点](https://help.aliyun.com/document_detail/68342.html) |
+| setting.php  | sasl_plain_username | 控制台实例详情页获取 |
+| setting.php  | sasl_plain_password | 控制台实例详情页获取 |
 
 
 
