@@ -2,8 +2,9 @@
 1. 请先参考 CPP Demo 安装好 librdkafka 库
 2. 本Demo基于开源客户端[php-rdkafka](https://github.com/arnaud-lb/php-rdkafka), 请先按照[installation guide](https://arnaud-lb.github.io/php-rdkafka/phpdoc/rdkafka.setup.html)安装相应模块（安装完后可能需要配置下php.ini），安装成功后调用php -m|grep kafka确认下
 3. 按照下面的配置说明，配置setting.php
-4. php kafka-producer.php  发送消息
-5. php kafka-consumer.php  消费消息
+4. 更多配置请直接在代码里改，类似`$conf->set('xxx', 'xxx');` ，配置含义请参考[配置详情](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md)
+5. php kafka-producer.php  发送消息
+6. php kafka-consumer.php  消费消息
 
 
 ### 配置说明

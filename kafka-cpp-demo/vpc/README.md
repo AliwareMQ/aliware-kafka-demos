@@ -1,6 +1,6 @@
 #### 接入说明
 Demo 的目的仅仅是把应用跑起来作为参考，更多参数和程序健壮性请参考官方文档设置以保证客户端的稳定和性能。
-相关资料请参考[开源源码](https://github.com/edenhill/librdkafka)和[开源文档](https://github.com/edenhill/librdkafka/blob/master/INTRODUCTION.md#documentation).
+相关资料请参考 [开源源码](https://github.com/edenhill/librdkafka) 和 [开源文档](https://github.com/edenhill/librdkafka/blob/master/INTRODUCTION.md#documentation) 和 [配置文档](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md).
 
 #### CentOS 7 安装依赖
 1.安装 GCC
