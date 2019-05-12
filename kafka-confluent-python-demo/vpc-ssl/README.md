@@ -6,6 +6,7 @@ Demo 的目的仅仅是把应用跑起来作为参考，更多参数和程序健
 #### 接入步骤
 1. setting.py中的bootstrap_servers请参考文档[获取接入点](https://help.aliyun.com/document_detail/68342.html?spm=a2c4g.11186623.6.554.X2a7Ga) 
 2. Topic与CID请参考文档[创建资源](https://help.aliyun.com/document_detail/68328.html?spm=a2c4g.11186623.6.549.xvKAt6)，然后将其更新到setting.py中
-3. pip install confluent-kafka
+3. Username和Password请在控制台实例详情获取，设置到setting.py中
+4. pip install confluent-kafka
 
 
