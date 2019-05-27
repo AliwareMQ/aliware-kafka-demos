@@ -30,6 +30,8 @@ func init() {
 	mqConfig.Net.SASL.Password = cfg.Password
 	mqConfig.Net.SASL.Handshake = true
 
+    mqConfig.Version=sarama.V0_10_0_0
+
 	certBytes, err := ioutil.ReadFile(configs.GetFullPath(cfg.CertFile))
 	clientCertPool := x509.NewCertPool()
 	ok := clientCertPool.AppendCertsFromPEM(certBytes)
@@ -66,6 +68,7 @@ func produce(topic string, key string, content string) error {
 		Topic: topic,
 		Key:   sarama.StringEncoder(key),
 		Value: sarama.StringEncoder(content),
+        Timestamp: time.Now(),
 	}
 
 	_, _, err := producer.SendMessage(msg)

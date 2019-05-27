@@ -11,6 +11,10 @@ localbin
 bin/ 
 pkg/
 github.com/
+**/github.com/
+golang.org/
+**/golang.org/
+
 
 #pom.xml.tag
 #pom.xml.releaseBackup

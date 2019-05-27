@@ -54,7 +54,7 @@ func consume() {
 		select {
 		case msg, more := <-consumer.Messages():
 			if more {
-                fmt.Printf("Partition:%d, Offset:%d, Key:%s, Value:%s \n", msg.Partition, msg.Offset, string(msg.Key), string(msg.Value))
+                fmt.Printf("Partition:%d, Offset:%d, Key:%s, Value:%s Timestamp:%s\n", msg.Partition, msg.Offset, string(msg.Key), string(msg.Value), msg.Timestamp)
 				consumer.MarkOffset(msg, "") // mark message as processed
 			}
 		case err, more := <-consumer.Errors():

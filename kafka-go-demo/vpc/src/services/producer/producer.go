@@ -24,6 +24,7 @@ func init() {
 	mqConfig := sarama.NewConfig()
 
 	mqConfig.Producer.Return.Successes = true
+    mqConfig.Version=sarama.V0_10_0_0
 
 	if err = mqConfig.Validate(); err != nil {
 		msg := fmt.Sprintf("Kafka producer config invalidate. config: %v. err: %v", *cfg, err)
@@ -45,6 +46,7 @@ func produce(topic string, key string, content string) error {
 		Topic: topic,
 		Key:   sarama.StringEncoder(key),
 		Value: sarama.StringEncoder(content),
+        Timestamp: time.Now(),
 	}
 
 	_, _, err := producer.SendMessage(msg)
