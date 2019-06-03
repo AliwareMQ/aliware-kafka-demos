@@ -69,7 +69,7 @@ cat inventory.sql | docker exec -i tutorial_sqlserver_1 bash -c '/opt/mssql-tool
 成功后，可以看到创建了新的database、tables以及初始数据。此时可以进入下一步。
 
 ## 启动Kafka Connect
-参见![这里](../README.md)
+参见[这里](../README.md)
 
 ## 启动SQL Server Connector
 

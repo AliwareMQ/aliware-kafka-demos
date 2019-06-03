@@ -88,7 +88,21 @@ config.storage.topic=connect-configs
 status.storage.topic=connect-status
 ```
 
-编辑kafka_client_jaas.conf文件，输入控制台上实例的username和passwork。
+编辑kafka_client_jaas.conf文件。
+```shell
+> vim kafka_client_jaas.conf
+```
+
+```
+KafkaClient {
+   org.apache.kafka.common.security.plain.PlainLoginModule required
+   ## 控制台中实例的用户名和密码
+   username="your username"
+   password="your password";
+};
+
+```
+
 
 
 ## 启动Kafka Connect

@@ -41,7 +41,7 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *
 如果我们是使用demo中的docker方式安装的Mysql，上面的配置已经默认设置好了，用户可以不需要再重复设置。User为debezium，密码为dbz。
 
 ## 启动Kafka Connect
-参见![这里](../README.md)
+参见[这里](../README.md)
 
 ## 启动Mysql Connector
 
@@ -62,6 +62,7 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *
 ```
 
 ### 公网接入
+```
 ## Kafka接入点，通过控制台获取。存储db中schema变化信息
 ## 您在控制台获取的SSL接入点
 "database.history.kafka.bootstrap.servers" : "kafka:9092",
