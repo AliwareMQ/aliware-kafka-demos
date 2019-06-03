@@ -1,4 +1,4 @@
-### 获取Kafka Connect
+## 获取Kafka Connect
 根据消息队列Kafka服务端版本，下载对应版本[Kafka](http://kafka.apache.org/downloads)。
 以0.10.0.0版本为例，下载后解压。
 ```shell
@@ -6,9 +6,9 @@
 > cd kafka_2.11-0.10.0.0
 ```
 
-### 配置Kafka Connect
+## 配置Kafka Connect
 
-#### VPC内接入配置
+### VPC内接入配置
 编辑配置文件connect-distributed.properties。
 ```shell
 > vim config/connect-distributed.properties
@@ -37,7 +37,7 @@ config.storage.topic=connect-configs
 status.storage.topic=connect-status
 ```
 
-#### 公网接入配置
+### 公网接入配置
 编辑配置文件connect-distributed.properties。
 ```shell
 > vim config/connect-distributed.properties
@@ -103,6 +103,12 @@ KafkaClient {
 
 ```
 
+## 控制台创建Topic与Consumer Group
+
+根据上一步配置，需要提前在控制台创建相应Topic以及Consumer Group。
+Topic:connect-offsets, connect-configs, connect-status。
+Consumer Groups:connect-cluster。
+详情参见上一步。
 
 
 ## 启动Kafka Connect

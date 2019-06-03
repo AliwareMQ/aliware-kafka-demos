@@ -73,8 +73,10 @@ cat inventory.sql | docker exec -i tutorial_sqlserver_1 bash -c '/opt/mssql-tool
 
 ## 启动SQL Server Connector
 
-编辑register-sqlserver.json，更多配置请参见[官方文档](https://debezium.io/docs/connectors/sqlserver/#connector-properties)
-### VPC接入
+### 编辑register-sqlserver.json
+更多配置请参见[官方文档](https://debezium.io/docs/connectors/sqlserver/#connector-properties)
+
+#### VPC接入
 ```
 ## Kafka接入点，通过控制台获取
 ## 您在控制台获取的默认接入点
@@ -88,7 +90,8 @@ cat inventory.sql | docker exec -i tutorial_sqlserver_1 bash -c '/opt/mssql-tool
 "database.history.kafka.topic": "schema-changes-inventory"
 ```
 
-### 公网接入
+#### 公网接入
+```
 ## Kafka接入点，通过控制台获取。存储db中schema变化信息
 ## 您在控制台获取的SSL接入点
 "database.history.kafka.bootstrap.servers" : "kafka:9092",
@@ -111,6 +114,12 @@ cat inventory.sql | docker exec -i tutorial_sqlserver_1 bash -c '/opt/mssql-tool
 ```
 ```
 
+### 创建相关Topic
+配置好register-sqlserver.json，需根据配置在控制台中创建相应topic。
+例如，如果是按照本例子中的方式安装的Mysql，可以看到SQL Server已经提前创建好了db name：testDB，下面有四张表：customers, orders, products以及products_on_hand。
+根据以上register-sqlserver.json的配置，我们需要在控制台创建topic：server1, server1.testDB.customers, server1.testDB.orders, server1.testDB.products, server1.testDB.products_on_hand。此外，在register-sqlserver.json中，配置了将schema变化信息记录在schema-changes-testDB，因此还需要在控制台创建topic：schema-changes-inventory。
+
+### 发送请求，启动SQL Server Connector
 请求Kafka Connect，开启一个SQL Server Connector。
 ```shell
 > curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @register-sqlserver.json

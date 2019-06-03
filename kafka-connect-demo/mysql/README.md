@@ -19,6 +19,8 @@ export CLASSPATH=/path/to/my/connectors/*
 本示例将会在本地机器通过docker安装Mysql。如果已有Mysql，则可以跳过这一步。
 确保已经安装好了docker，执行命令，启动Mysql。
 ```shell
+## 版本参见http://debezium.io/docs/tutorial/
+export DEBEZIUM_VERSION=0.5
 docker-compose -f docker-compose-mysql.yaml up
 ```
 
@@ -45,15 +47,16 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *
 
 ## 启动Mysql Connector
 
-编辑register-mysql.json，更多配置请参见[官方文档](https://debezium.io/docs/connectors/mysql/#connector-properties)
+### 编辑register-mysql.json
+更多配置请参见[官方文档](https://debezium.io/docs/connectors/mysql/#connector-properties)
 
-### VPC接入
+#### VPC接入
 ```
 ## Kafka接入点，通过控制台获取
 ## 您在控制台获取的默认接入点
 "database.history.kafka.bootstrap.servers" : "kafka:9092",
 ## 需要提前在控制台创建同名topic，在本例中创建topic：server1
-## 所有table的变更数据，会记录在server1.$DATABASE.$TABLE的topic中，如server1.testDB.products
+## 所有table的变更数据，会记录在server1.$DATABASE.$TABLE的topic中，如server1.inventory.products
 ## 因此用户需要提前在控制台中创建所有相关topic
 "database.server.name": "server1",
 ## 记录schema变化信息将记录在这个topic中
@@ -61,7 +64,7 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *
 "database.history.kafka.topic": "schema-changes-inventory"
 ```
 
-### 公网接入
+#### 公网接入
 ```
 ## Kafka接入点，通过控制台获取。存储db中schema变化信息
 ## 您在控制台获取的SSL接入点
@@ -70,7 +73,7 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *
 ## 所有table的变更数据，会记录在server1.$DATABASE.$TABLE的topic中，如server1.testDB.products
 ## 因此用户需要提前在控制台中创建所有相关topic
 "database.server.name": "server1",
-## 记录schema变化信息将记录在这个topic中
+## schema变化信息将记录在这个topic中
 ## 需要提前在控制台创建
 "database.history.kafka.topic": "schema-changes-inventory",
 ## SSL公网方式访问配置
@@ -84,6 +87,12 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *
 "database.history.consumer.sasl.mechanism": "PLAIN",
 ```
 
+### 创建相关Topic
+配置好register-mysql.json，需根据配置在控制台中创建相应topic。
+例如，如果是按照本例子中的方式安装的Mysql，可以看到Mysql已经提前创建好了database：inventory，下面有四张表：customers, orders, products以及products_on_hand。
+根据以上register-mysql.json的配置，我们需要在控制台创建topic：server1, server1.inventory.customers, server1.inventory.orders, server1.inventory.products, server1.inventory.products_on_hand。此外，在register-mysql.json中，配置了将schema变化信息记录在schema-changes-inventory，因此还需要在控制台创建topic：schema-changes-inventory。
+
+### 发送请求，启动mysql Connector
 请求Kafka Connect，开启一个Mysql Connector。
 ```shell
 > curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @register-mysql.json

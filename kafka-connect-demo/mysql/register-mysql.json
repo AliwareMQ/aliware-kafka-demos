@@ -8,7 +8,7 @@
         "database.user": "debezium",
         "database.password": "dbz",
         "database.server.id": "184054",
-        "database.server.name": "dbserver1",
+        "database.server.name": "server1",
         "database.whitelist": "inventory",
         "database.history.kafka.bootstrap.servers": "kafka:9092",
         "database.history.kafka.topic": "schema-changes-inventory"
