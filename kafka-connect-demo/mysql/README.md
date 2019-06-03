@@ -11,7 +11,7 @@ plugin.path=/kafka/connect/plugins
 ```
 早期Kafka Connect版本不支持配置plugin.path，需要用户在CLASSPATH中指定插件位置。
 ```
-export CLASSPATH=/path/to/my/connectors/*
+export CLASSPATH=/kafka/connect/plugins/mysql-connector/*
 ```
 
 ## 安装Mysql

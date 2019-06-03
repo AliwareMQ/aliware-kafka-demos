@@ -105,9 +105,12 @@ KafkaClient {
 
 ## 控制台创建Topic与Consumer Group
 
-根据上一步配置，需要提前在控制台创建相应Topic以及Consumer Group。
-Topic:connect-offsets, connect-configs, connect-status。
-Consumer Groups:connect-cluster。
+需要提前在控制台创建相应Topic以及Consumer Group。
+
+根据本例配置，需要创建的Topic: connect-offsets, connect-configs, connect-status。
+
+根据本例配置，需要创建的Consumer Groups:connect-cluster。
+
 详情参见上一步。
 
 

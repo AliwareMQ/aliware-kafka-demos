@@ -11,7 +11,7 @@ plugin.path=/kafka/connect/plugins
 ```
 早期Kafka Connect版本不支持配置plugin.path，需要用户在CLASSPATH中指定插件位置。
 ```
-export CLASSPATH=/path/to/my/connectors/*
+export CLASSPATH=/kafka/connect/plugins/sqlserver-connector/*
 ```
 
 ## 安装SQL Server
@@ -26,7 +26,13 @@ docker-compose -f docker-compose-sqlserver.yaml up
 
 ## 配置SQL Server
 
-SQL Server需要做如下配置：
+如果用户通过本demo安装了SQL Server，可以使用inventory.sql设置并初始化SQL Server中的测试数据。
+```shell
+cat inventory.sql | docker exec -i tutorial_sqlserver_1 bash -c '/opt/mssql-tools/bin/sqlcmd -U sa -P $SA_PASSWORD'
+```
+成功后，可以看到创建了新的database、tables以及初始数据。此时可以进入下一步。
+
+如果用户需要监听已有的数据表，需要做如下配置：
 ### 开启CDC配置
 ```
 ## Enable Database for CDC template
@@ -61,12 +67,6 @@ GO
 EXEC master.dbo.xp_servicecontrol N'QUERYSTATE',N'SQLSERVERAGENT'
 ```
 如果返回结果为RUNNING. 则说明已经开启。
-
-设置并初始化SQL Server中的测试数据。
-```shell
-cat inventory.sql | docker exec -i tutorial_sqlserver_1 bash -c '/opt/mssql-tools/bin/sqlcmd -U sa -P $SA_PASSWORD'
-```
-成功后，可以看到创建了新的database、tables以及初始数据。此时可以进入下一步。
 
 ## 启动Kafka Connect
 参见[这里](../README.md)
@@ -111,7 +111,6 @@ cat inventory.sql | docker exec -i tutorial_sqlserver_1 bash -c '/opt/mssql-tool
 "database.history.consumer.ssl.truststore.password": "KafkaOnsClient",
 "database.history.consumer.security.protocol": "SASL_SSL",
 "database.history.consumer.sasl.mechanism": "PLAIN",
-```
 ```
 
 ### 创建相关Topic
