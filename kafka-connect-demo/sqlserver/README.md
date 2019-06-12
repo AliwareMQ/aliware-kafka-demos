@@ -14,6 +14,9 @@ plugin.path=/kafka/connect/plugins
 export CLASSPATH=/kafka/connect/plugins/sqlserver-connector/*
 ```
 
+## 启动Kafka Connect
+参见[这里](../README.md)
+
 ## 安装SQL Server
 
 由于在[SQL Server 2016 SP1](https://blogs.msdn.microsoft.com/sqlreleaseservices/sql-server-2016-service-pack-1-sp1-released/) 之后开始支持[CDC](https://docs.microsoft.com/en-us/sql/relational-databases/track-changes/about-change-data-capture-sql-server?view=sql-server-2017)，因此需要SQL Server版本不能低于该版本。
@@ -67,9 +70,6 @@ GO
 EXEC master.dbo.xp_servicecontrol N'QUERYSTATE',N'SQLSERVERAGENT'
 ```
 如果返回结果为RUNNING. 则说明已经开启。
-
-## 启动Kafka Connect
-参见[这里](../README.md)
 
 ## 启动SQL Server Connector
 
