@@ -1,5 +1,5 @@
 ## 下载SQL Server Connector
-目前[Debezium](https://debezium.io)提供了SQL Server Source Connector，我们可以在[这里](https://repo1.maven.org/maven2/io/debezium/debezium-connector-sqlserver/)下载。注意，下载时需要结合Kafka Connect版本，详情见[这里](https://debezium.io/docs/releases/)。
+目前[Debezium](https://debezium.io)提供了SQL Server Source Connector，我们可以在[这里](https://repo1.maven.org/maven2/io/debezium/debezium-connector-sqlserver/)下载。注意，下载时需要结合Kafka Connect版本，详情见[这里](https://debezium.io/docs/releases/)，目前该Connector只支持Kafka 2.1.0及以上。
 如果用户对Debezium的SQL Server Connector实现原理感兴趣，可以参见[官方文档](https://debezium.io/docs/connectors/sqlserver/)。
 
 ## 配置Kakfa Connect
