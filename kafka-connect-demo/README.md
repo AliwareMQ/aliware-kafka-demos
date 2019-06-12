@@ -1,10 +1,13 @@
 ## 本Demo简介
 Kafka Connect主要用于将数据流输入和输出Kafka，详细介绍请参见[Kafka官方介绍](https://kafka.apache.org/documentation/#connect)或[Confluent](https://docs.confluent.io/current/connect/index.html)。
 ![dataflow](flow.png "dataflow")
+
 Kafka Connect主要通过各种Source Connector的实现，将数据从第三方系统输入到Kafka broker，通过各种Sink Connector实现，将数据从Kafka broker中导入到第三方系统。
+
 本示例主要演示如何启动Kafka Connect，并且在上面跑指定的Connector，其主要流程有：
 1. 启动Kafka Connect。
 2. 通过Kafka Connect提供的API请求启动指定的Source Connector或Sink Connector。
+
 以下内容主要演示第1步，即如何启动Kafka Connect（可以为单机，也可以为集群）。第2步，即如何在Kafka Connect中运行指定的Connector请根据需求参见各子目录demo。
 
 ## 获取Kafka Connect
