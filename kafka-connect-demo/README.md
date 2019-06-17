@@ -131,7 +131,7 @@ KafkaClient {
 ```shell
 ## 如果是公网接入，先设置java.security.auth.login.config
 ## VPC接入可以跳过这一步
-> export KAFKA_OPTS="-Djava.security.auth.login.config=kafka.client.truststore.jks"
+> export KAFKA_OPTS="-Djava.security.auth.login.config=kafka_client_jaas.conf"
 
 ## 启动Kafka Connect
 > bin/connect-distributed.sh config/connect-distributed.properties
