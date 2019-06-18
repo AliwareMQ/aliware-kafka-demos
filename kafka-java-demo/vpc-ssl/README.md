@@ -33,7 +33,7 @@ KafkaClient {
 };
 ```
   
-注意：把\*\*\*替换为阿里云账号的 AccessKey，SecretKey。
+注意：把\*\*\*替换为阿里云Kafka控制台实例详情页的用户名和密码。
 
 ##### 2.2 设置 kafka\_client\_jaas.conf 的路径：
 
