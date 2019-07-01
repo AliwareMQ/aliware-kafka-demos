@@ -119,7 +119,7 @@ KafkaClient {
 
 需要提前在控制台创建相应Topic以及Consumer Group。
 
-根据本例配置，需要创建的Topic: connect-offsets, connect-configs, connect-status。
+根据本例配置，需要创建的Topic: connect-offsets, connect-configs, connect-status。注意，这三个topic需要设置为Local存储，并且cleanup.policy为compact。分区数请参见connect-distributed.properties中注释。
 
 根据本例配置，需要创建的Consumer Groups:connect-cluster。
 
