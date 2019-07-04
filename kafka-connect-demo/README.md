@@ -10,6 +10,11 @@ Kafka Connect主要通过各种Source Connector的实现，将数据从第三方
 
 以下内容主要演示第1步，即如何启动Kafka Connect（可以为单机，也可以为集群）。第2步，即如何在Kafka Connect中运行指定的Connector请根据需求参见各子目录demo。
 
+## 重要提示
+
+本demo需要提前创建的topic需要设置为Local存储，并且cleanup.policy为compact。创建topic时，请仔细对照下文说明。
+
+
 ## 获取Kafka Connect
 根据消息队列Kafka服务端版本，下载对应版本[Kafka](http://kafka.apache.org/downloads)。
 以0.10.0.0版本为例，下载后解压。
@@ -17,10 +22,6 @@ Kafka Connect主要通过各种Source Connector的实现，将数据从第三方
 > tar -xzf kafka_2.11-0.10.0.0.tgz
 > cd kafka_2.11-0.10.0.0
 ```
-
-## 重要提示
-
-本demo需要提前创建的topic需要设置为Local存储，并且cleanup.policy为compact。创建topic时，请仔细对照下文说明。
 
 ## 配置Kafka Connect
 
