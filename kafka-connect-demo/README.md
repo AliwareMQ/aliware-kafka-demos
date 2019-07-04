@@ -18,6 +18,10 @@ Kafka Connect主要通过各种Source Connector的实现，将数据从第三方
 > cd kafka_2.11-0.10.0.0
 ```
 
+## 重要提示
+
+本demo需要提前创建的topic需要设置为Local存储，并且cleanup.policy为compact。创建topic时，请仔细对照下文说明。
+
 ## 配置Kafka Connect
 
 ### VPC内接入配置
