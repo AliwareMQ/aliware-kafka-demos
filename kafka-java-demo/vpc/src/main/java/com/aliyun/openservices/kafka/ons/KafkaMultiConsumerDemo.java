@@ -13,7 +13,7 @@ import org.apache.kafka.common.errors.WakeupException;
 
 public class KafkaMultiConsumerDemo {
 
-    public void doConsumer() {
+    public static void main(String args[]) throws InterruptedException {
         //加载kafka.properties
         Properties kafkaProperties = JavaKafkaConfigurer.getKafkaProperties();
 
@@ -34,7 +34,9 @@ public class KafkaMultiConsumerDemo {
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaProperties.getProperty("group.id"));
 
         // 开启多个consumer同时消费topic，注意topic数不要超过分区数
+        // 开启多个consumer同时消费topic，注意topic数不要超过分区数
         int consumerNum = 2;
+        Thread[] consumerThreads = new Thread[consumerNum];
         for (int i = 0; i < consumerNum; i++) {
             KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
 
@@ -43,8 +45,15 @@ public class KafkaMultiConsumerDemo {
             consumer.subscribe(subscribedTopics);
 
             KafkaConsumerRunner kafkaConsumerRunner = new KafkaConsumerRunner(consumer);
-            Thread consumerThread = new Thread(kafkaConsumerRunner);
-            consumerThread.start();
+            consumerThreads[i] = new Thread(kafkaConsumerRunner);
+        }
+
+        for (int i = 0; i < consumerNum; i++) {
+            consumerThreads[i].start();
+        }
+
+        for (int i = 0; i < consumerNum; i++) {
+            consumerThreads[i].join();
         }
     }
 

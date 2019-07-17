@@ -16,7 +16,7 @@ import org.apache.kafka.common.errors.WakeupException;
 
 public class KafkaMultiConsumerDemo {
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws InterruptedException {
         //设置sasl文件的路径
         JavaKafkaConfigurer.configureSasl();
 
@@ -51,6 +51,7 @@ public class KafkaMultiConsumerDemo {
 
         // 开启多个consumer同时消费topic，注意topic数不要超过分区数
         int consumerNum = 2;
+        Thread[] consumerThreads = new Thread[consumerNum];
         for (int i = 0; i < consumerNum; i++) {
             KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
 
@@ -59,8 +60,15 @@ public class KafkaMultiConsumerDemo {
             consumer.subscribe(subscribedTopics);
 
             KafkaConsumerRunner kafkaConsumerRunner = new KafkaConsumerRunner(consumer);
-            Thread consumerThread = new Thread(kafkaConsumerRunner);
-            consumerThread.start();
+            consumerThreads[i] = new Thread(kafkaConsumerRunner);
+        }
+
+        for (int i = 0; i < consumerNum; i++) {
+            consumerThreads[i].start();
+        }
+
+        for (int i = 0; i < consumerNum; i++) {
+            consumerThreads[i].join();
         }
     }
 
