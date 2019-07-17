@@ -11,6 +11,10 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.errors.WakeupException;
 
+/**
+ * 本demo演示如何在一个进程内开启多个consumer同时消费topic
+ * 注意全局consumer数量不要超过订阅的topic总分区数
+ */
 public class KafkaMultiConsumerDemo {
 
     public static void main(String args[]) throws InterruptedException {
@@ -33,8 +37,6 @@ public class KafkaMultiConsumerDemo {
         //属于同一个组的消费实例，会负载消费消息
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaProperties.getProperty("group.id"));
 
-        // 开启多个consumer同时消费topic，注意topic数不要超过分区数
-        // 开启多个consumer同时消费topic，注意topic数不要超过分区数
         int consumerNum = 2;
         Thread[] consumerThreads = new Thread[consumerNum];
         for (int i = 0; i < consumerNum; i++) {

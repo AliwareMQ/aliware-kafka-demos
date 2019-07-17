@@ -14,6 +14,10 @@ import org.apache.kafka.common.config.SaslConfigs;
 import org.apache.kafka.common.config.SslConfigs;
 import org.apache.kafka.common.errors.WakeupException;
 
+/**
+ * 本demo演示如何在一个进程内开启多个consumer同时消费topic
+ * 注意全局consumer数量不要超过订阅的topic总分区数
+ */
 public class KafkaMultiConsumerDemo {
 
     public static void main(String args[]) throws InterruptedException {
@@ -49,7 +53,6 @@ public class KafkaMultiConsumerDemo {
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaProperties.getProperty("group.id"));
         //构造消息对象，也即生成一个消费实例
 
-        // 开启多个consumer同时消费topic，注意topic数不要超过分区数
         int consumerNum = 2;
         Thread[] consumerThreads = new Thread[consumerNum];
         for (int i = 0; i < consumerNum; i++) {
