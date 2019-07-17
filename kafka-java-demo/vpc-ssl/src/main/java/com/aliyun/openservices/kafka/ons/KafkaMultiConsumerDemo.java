@@ -4,23 +4,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
+import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.config.SaslConfigs;
+import org.apache.kafka.common.config.SslConfigs;
 import org.apache.kafka.common.errors.WakeupException;
 
-public class KafkaConsumerDemo {
+public class KafkaMultiConsumerDemo {
 
-    public void doConsumer() {
+    public static void main(String args[]) {
+        //设置sasl文件的路径
+        JavaKafkaConfigurer.configureSasl();
+
         //加载kafka.properties
         Properties kafkaProperties = JavaKafkaConfigurer.getKafkaProperties();
 
         Properties props = new Properties();
         //设置接入点，请通过控制台获取对应Topic的接入点
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getProperty("bootstrap.servers"));
-
+        //设置SSL根证书的路径，请记得将XXX修改为自己的路径
+        //与sasl路径类似，该文件也不能被打包到jar中
+        props.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, kafkaProperties.getProperty("ssl.truststore.location"));
+        //根证书store的密码，保持不变
+        props.put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG, "KafkaOnsClient");
+        //接入协议，目前支持使用SASL_SSL协议接入
+        props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");
+        //SASL鉴权方式，保持不变
+        props.put(SaslConfigs.SASL_MECHANISM, "PLAIN");
+        //两次poll之间的最大允许间隔
         //可更加实际拉去数据和客户的版本等设置此值，默认30s
         props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
         //每次poll的最大数量
@@ -32,6 +47,7 @@ public class KafkaConsumerDemo {
         //当前消费实例所属的消费组，请在控制台申请之后填写
         //属于同一个组的消费实例，会负载消费消息
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaProperties.getProperty("group.id"));
+        //构造消息对象，也即生成一个消费实例
 
         int consumerNum = 2;
         for (int i = 0; i < consumerNum; i++) {
@@ -92,4 +108,3 @@ public class KafkaConsumerDemo {
         }
     }
 }
-
