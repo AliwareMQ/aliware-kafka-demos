@@ -33,6 +33,7 @@ public class KafkaMultiConsumerDemo {
         //属于同一个组的消费实例，会负载消费消息
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaProperties.getProperty("group.id"));
 
+        // 开启多个consumer同时消费topic，注意topic数不要超过分区数
         int consumerNum = 2;
         for (int i = 0; i < consumerNum; i++) {
             KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);

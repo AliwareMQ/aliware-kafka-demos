@@ -49,6 +49,7 @@ public class KafkaMultiConsumerDemo {
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaProperties.getProperty("group.id"));
         //构造消息对象，也即生成一个消费实例
 
+        // 开启多个consumer同时消费topic，注意topic数不要超过分区数
         int consumerNum = 2;
         for (int i = 0; i < consumerNum; i++) {
             KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(props);
