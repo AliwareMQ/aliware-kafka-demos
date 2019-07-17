@@ -10,7 +10,7 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 
 public class KafkaProducerDemo {
 
-    public void doSend() {
+    public static void main(String args[]) {
         //加载kafka.properties
         Properties kafkaProperties =  JavaKafkaConfigurer.getKafkaProperties();
 

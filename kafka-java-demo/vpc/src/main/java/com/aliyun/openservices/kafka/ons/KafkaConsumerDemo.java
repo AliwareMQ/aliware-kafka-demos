@@ -12,7 +12,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 
 public class KafkaConsumerDemo {
 
-    public void doConsumer() {
+    public static void main(String args[]) {
         //加载kafka.properties
         Properties kafkaProperties =  JavaKafkaConfigurer.getKafkaProperties();
 
