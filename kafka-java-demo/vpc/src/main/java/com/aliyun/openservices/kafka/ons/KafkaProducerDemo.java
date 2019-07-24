@@ -1,8 +1,11 @@
 package com.aliyun.openservices.kafka.ons;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.Future;
 
+import java.util.concurrent.TimeUnit;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -33,13 +36,24 @@ public class KafkaProducerDemo {
         String value = "this is the message's value"; //消息的内容
 
         try {
+            //批量获取 futures 可以加快速度, 但注意，批量不要太大
+            List<Future<RecordMetadata>> futures = new ArrayList<Future<RecordMetadata>>(128);
             for (int i =0; i < 100; i++) {
                 //发送消息，并获得一个Future对象
                 ProducerRecord<String, String> kafkaMessage =  new ProducerRecord<String, String>(topic, value + ": " + i);
                 Future<RecordMetadata> metadataFuture = producer.send(kafkaMessage);
+                futures.add(metadataFuture);
+
+            }
+            producer.flush();
+            for (Future<RecordMetadata> future: futures) {
                 //同步获得Future对象的结果
-                RecordMetadata recordMetadata = metadataFuture.get();
-                System.out.println("Produce ok:" + recordMetadata.toString());
+                try {
+                    RecordMetadata recordMetadata = future.get();
+                    System.out.println("Produce ok:" + recordMetadata.toString());
+                } catch (Throwable t) {
+                    t.printStackTrace();
+                }
             }
         } catch (Exception e) {
             //要考虑重试
