@@ -31,7 +31,7 @@ public class KafkaSpringbootDemo {
     @Component
     public static class KafkaReceiveService {
 
-        @KafkaListener(topics = {"kongming_test"})
+        @KafkaListener(topics = {"XXXX"})
         public void listen(ConsumerRecord<?, ?> record) {
 
             Optional<?> kafkaMessage = Optional.ofNullable(record.value());
@@ -54,7 +54,7 @@ public class KafkaSpringbootDemo {
         private KafkaTemplate<String, String> kafkaTemplate;
 
         public void sendOneMessage() throws Exception {
-            ListenableFuture<SendResult<String, String>> result = kafkaTemplate.send("kongming_test", "hello aliKafka");
+            ListenableFuture<SendResult<String, String>> result = kafkaTemplate.send("XXXXX", "hello aliKafka");
             kafkaTemplate.flush();
             System.out.println("producer send ok " + result.get().getProducerRecord());
         }

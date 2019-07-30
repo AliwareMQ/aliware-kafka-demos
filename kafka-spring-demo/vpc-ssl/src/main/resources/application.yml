@@ -1,9 +1,9 @@
 spring:
   kafka:
-    bootstrap-servers: 121.199.59.159:9093,47.97.205.122:9093,47.111.96.104:9093
+    bootstrap-servers: XXXXX
 
     properties:
-      ssl.truststore.location: /Users/kongming.lrq/sources/aliware-kafka-demos/kafka-java-demo/vpc-ssl/src/main/resources/kafka.client.truststore.jks
+      ssl.truststore.location: XXX/kafka.client.truststore.jks
       ssl.truststore.password: KafkaOnsClient
       security.protocol: SASL_SSL
       sasl.mechanism: PLAIN
@@ -18,7 +18,7 @@ spring:
         linger.ms: 1
 
     consumer:
-      group-id: kongming_test_cg
+      group-id: XXXX
       enable-auto-commit: false
       auto-commit-interval: 100
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
