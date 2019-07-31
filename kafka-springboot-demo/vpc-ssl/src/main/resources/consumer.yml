@@ -1,0 +1,18 @@
+spring:
+  kafka:
+    bootstrap-servers: XXXX,XXX
+
+    properties:
+      ssl.truststore.location: XXX/kafka.client.truststore.jks
+      ssl.truststore.password: KafkaOnsClient
+      security.protocol: SASL_SSL
+      sasl.mechanism: PLAIN
+
+    consumer:
+      group-id: XXX
+      enable-auto-commit: false
+      auto-commit-interval: 100
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        session.timeout.ms: 15000
