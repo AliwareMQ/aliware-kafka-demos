@@ -30,7 +30,7 @@ func init() {
 	mqConfig.Net.SASL.Password = cfg.Password
 	mqConfig.Net.SASL.Handshake = true
 
-    mqConfig.Version=sarama.V0_10_0_0
+    mqConfig.Version=sarama.V0_10_2_2
 
 	certBytes, err := ioutil.ReadFile(configs.GetFullPath(cfg.CertFile))
 	clientCertPool := x509.NewCertPool()
