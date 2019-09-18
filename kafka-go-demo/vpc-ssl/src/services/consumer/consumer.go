@@ -51,7 +51,7 @@ func init() {
 	clusterCfg.Consumer.Offsets.Initial = sarama.OffsetOldest
 	clusterCfg.Group.Return.Notifications = true
 
-	clusterCfg.Version = sarama.V0_10_2_2
+	clusterCfg.Version = sarama.V0_10_2_1
 	if err = clusterCfg.Validate(); err != nil {
 		msg := fmt.Sprintf("Kafka consumer config invalidate. config: %v. err: %v", *clusterCfg, err)
 		fmt.Println(msg)
