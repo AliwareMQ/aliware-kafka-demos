@@ -3,8 +3,8 @@
 1. 安装软件：确保安装了 JDK 8+ 和 Maven 3.2.5+
 2. 编写配置：按照本页下面的接入说明配置`src/main/resource/kafka.properties`
 3. 打包 sh build.sh
-4. 发送消息 java -jar kafka-vpc-demo.jar -r producer
-5. 消费消息 java -jar kafka-vpc-demo.jar -r consumer
+4. 发送消息 java -cp .:kafka-vpc-demo.jar com.aliyun.openservices.kafka.ons.KafkaProducerDemo
+5. 消费消息 java -cp .:kafka-vpc-demo.jar com.aliyun.openservices.kafka.ons.KafkaConsumerDemo
 
 
 # Java SDK接入说明

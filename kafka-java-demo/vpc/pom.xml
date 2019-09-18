@@ -58,7 +58,7 @@
                     <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>
-                            <mainClass>com.aliyun.openservices.kafka.ons.MainDemo</mainClass>
+                            <mainClass>com.aliyun.openservices.kafka.ons.KafkaProducerDemo</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

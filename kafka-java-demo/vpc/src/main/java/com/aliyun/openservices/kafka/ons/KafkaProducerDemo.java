@@ -26,6 +26,10 @@ public class KafkaProducerDemo {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         //请求的最长等待时间
         props.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 30 * 1000);
+        //设置客户端内部重试次数
+        props.put(ProducerConfig.RETRIES_CONFIG, 5);
+        //设置客户端内部重试间隔
+        props.put(ProducerConfig.RECONNECT_BACKOFF_MS_CONFIG, 3000);
 
         //构造Producer对象，注意，该对象是线程安全的，一般来说，一个进程内一个Producer对象即可；
         //如果想提高性能，可以多构造几个对象，但不要太多，最好不要超过5个
@@ -56,11 +60,12 @@ public class KafkaProducerDemo {
                 }
             }
         } catch (Exception e) {
-            //要考虑重试
+            //客户端内部重试之后，仍然发送失败，业务要应对此类错误
             //参考常见报错: https://help.aliyun.com/document_detail/68168.html?spm=a2c4g.11186623.6.567.2OMgCB
             System.out.println("error occurred");
             e.printStackTrace();
         }
     }
+
 
 }
