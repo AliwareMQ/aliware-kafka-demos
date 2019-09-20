@@ -43,7 +43,7 @@ import org.apache.kafka.streams.state.KeyValueStore;
 //import sun.jvm.hotspot.runtime.Bytes;
 
 
-public class BagDependencyChecker {
+public class BagChecker {
 
     static final String processedBagTopic = "processed_bags";
     static final String processedStreamTopic = "processed_streams";
@@ -144,7 +144,7 @@ public class BagDependencyChecker {
         // Give the Streams application a unique name.  The name must be unique in the Kafka cluster
         // against which the application is run.
         streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG, "tbw");
-        streamsConfiguration.put(StreamsConfig.CLIENT_ID_CONFIG, "bag-dependency-checker-client");
+        streamsConfiguration.put(StreamsConfig.CLIENT_ID_CONFIG, "bag-checker-client");
         // Where to find Kafka broker(s).
         streamsConfiguration.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         // Specify default (de)serializers for record keys and for record values.
@@ -237,7 +237,7 @@ public class BagDependencyChecker {
         // Construct a `KStream` from the input topic "streams-plaintext-input", where message values
         // represent lines of text (for the sake of this example, we ignore whatever may be stored
         // in the message keys).  The default key and value serdes will be used.
-        final Serde<ProcessedBag> processedBagSerde = BagDependencyChecker.getProcessedBagsSerde();
+        final Serde<ProcessedBag> processedBagSerde = BagChecker.getProcessedBagsSerde();
         final KStream<String, ProcessedBag> processedBagStream = builder.stream(processedBagTopic, Consumed.with(Serdes.String(), processedBagSerde)).filter((key, value) -> !isExpired(value.streams));
 
         processedBagStream.foreach(new ForeachAction<String, ProcessedBag>() {
@@ -271,7 +271,7 @@ public class BagDependencyChecker {
         });
 
 
-        final Serde<ProcessedStream> processedStreamSerde = BagDependencyChecker.getProcessedStreamsSerde();
+        final Serde<ProcessedStream> processedStreamSerde = BagChecker.getProcessedStreamsSerde();
         final KStream<String, String> streamCountKStream = builder.stream(processedStreamTopic, Consumed.with(Serdes.String(), processedStreamSerde)).filter((key, value) -> !isExpired(value)).map((key, value) -> {
             return new KeyValue<>(value.bag_file_path, value.id);
         });;
