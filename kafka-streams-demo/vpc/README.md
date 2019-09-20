@@ -1,52 +1,38 @@
 # Run Demo
 
-1. 安装软件：确保安装了 JDK 8+ 和 Maven 3.2.5+
-2. 编写配置：按照本页下面的接入说明配置`src/main/resource/kafka.properties`
-3. 打包 sh build.sh
-4. 发送消息 java -cp .:kafka-vpc-demo.jar com.aliyun.openservices.kafka.ons.KafkaProducerDemo
-5. 消费消息 java -cp .:kafka-vpc-demo.jar com.aliyun.openservices.kafka.ons.KafkaConsumerDemo
-
-
-# Java SDK接入说明
-
-#### 1、Maven 依赖配置
-
 ```java
-//消息队列 Kafka服务端版本是0.10系列，客户端建议使用该版本
-<dependency>
-       <groupId>org.apache.kafka</groupId>
-       <artifactId>kafka-clients</artifactId>
-       <version>0.10.2.2</version>
-</dependency>
-```
+mvn clean package -DskipTests
 
-#### 2.示例代码
+#copy the target/kafka-streams-demo.jar to somewhere
 
-2.1 准备配置文件kafka.properties，可以参考Demo中的进行修改
+java -jar kafka-streams-demo.jar <servers>
 
 ```
-## 接入点，通过控制台获取
-## 您在控制台获取的接入点
-bootstrap.servers=控制台上的接入点IP+Port
 
-## Topic，通过控制台创建
-## 您在控制台创建的Topic
-topic=alikafka-topic-demo
+### Topic 资源管理
+Kafka Streams 主要依赖于 Kafka 来存储数据及中间状态，会使用到 Kafka 的一些高级特性，例如 compact 类型的 Topic。
 
-## Consumer Grouo，通过控制台创建
-## 您在控制台创建的 Consumer Group
-group.id=CID-consumer-group-demo
+#### source topic
+本例中是 streams-plaintext-input，在云 Kafka 控制台创建普通Topic即可。
+#### sink  topic
+请根据业务情况来判断是否需要设置 cleanup.policy 为 compact。
+本例中是 streams-wordcount-output, 在云 Kafka 控制台，高级配置，选择 Local存储，cleanup.policy 选择 compact。
 
-2.2 加载配置文件
-```
-见 JavaKafkaConfigurer
-```
-2.3 发送消息
-```
-见 KafkaProducerDemo
-```
-2.4 消费消息
-```
-见 KafkaConsumerDemo
-```
+#### internal topic 
+内部Topic和操作相关，主要包括：
+
+分组操作: groupby，产生的topic名字形式为 <applicatition-id>-<operatorname>-repartition，选择 Local存储，cleanup.policy 选择 delete;
+聚合操作: aggregate, reduce, count 等，产生的topic名字形式为 <applicatition-id>-<operatorname>-changelog，选择 Local存储，cleanup.policy 选择 compact;
+
+
+
+社区文档：
+http://kafka.apache.org/23/documentation/streams/developer-guide/manage-topics.html
+
+### 注意事项
+如果 AUTO_OFFSET_RESET_CONFIG 设置成 "earliest"，则第一次跑时，会加载所有数据。
+在生产环境，如果不想要历史数据，则应用第一次上线时，设置成"latest"
+
+ 
+
 

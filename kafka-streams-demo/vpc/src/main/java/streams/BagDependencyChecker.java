@@ -45,9 +45,9 @@ import org.apache.kafka.streams.state.KeyValueStore;
 
 public class BagDependencyChecker {
 
-    static final String processedBagTopic = "processed_bags_dev2";
-    static final String processedStreamTopic = "processed_streams_dev2";
-    static final String readBagsTopic = "ready_bags_dev2";
+    static final String processedBagTopic = "processed_bags";
+    static final String processedStreamTopic = "processed_streams";
+    static final String readBagsTopic = "ready_bags";
 
     static public class ProcessedBag {
         public String file_path;
@@ -143,7 +143,7 @@ public class BagDependencyChecker {
         final Properties streamsConfiguration = new Properties();
         // Give the Streams application a unique name.  The name must be unique in the Kafka cluster
         // against which the application is run.
-        streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG, "bdc");
+        streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG, "tbw");
         streamsConfiguration.put(StreamsConfig.CLIENT_ID_CONFIG, "bag-dependency-checker-client");
         // Where to find Kafka broker(s).
         streamsConfiguration.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -258,11 +258,11 @@ public class BagDependencyChecker {
 
         final KTable<String, Integer> bagCountStream = processedBagStream.map((key, value) -> {
             return new KeyValue<>(value.file_path, getValidStreams(value.streams));
-        }).groupBy((key, value) -> key, Grouped.with("bag-count", Serdes.String(), Serdes.Integer())).reduce(new Reducer<Integer>() {
+        }).groupBy((key, value) -> key, Grouped.with("bag-groupby", Serdes.String(), Serdes.Integer())).reduce(new Reducer<Integer>() {
             public Integer apply(Integer value1, Integer value2) {
                 return value1 < value2 ? value1: value2;
             }
-        }, Materialized.<String, Integer, KeyValueStore<Bytes, byte[]>>as("bag_count_store").withKeySerde(Serdes.String()).withValueSerde(Serdes.Integer()));
+        }, Materialized.<String, Integer, KeyValueStore<Bytes, byte[]>>as("bag-count-store").withKeySerde(Serdes.String()).withValueSerde(Serdes.Integer()));
 
         bagCountStream.toStream().foreach(new ForeachAction<String, Integer>() {
             public void apply(String key, Integer value) {
@@ -278,7 +278,7 @@ public class BagDependencyChecker {
 
         //final KStream<String, String> streamCountKStream = processedStreamKStream
 
-        final KTable<String, Integer> aggregatedStreamTable = streamCountKStream.groupBy((key, value) -> key, Grouped.with("stream-count", Serdes.String(), Serdes.String())).aggregate(
+        final KTable<String, Integer> aggregatedStreamTable = streamCountKStream.groupBy((key, value) -> key, Grouped.with("stream-groupby", Serdes.String(), Serdes.String())).aggregate(
             () -> new HashSet(), /* initializer */
             (aggKey, value, aggValue) ->{
                 aggValue.add(value);
