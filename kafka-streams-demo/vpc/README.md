@@ -12,6 +12,7 @@ java -jar kafka-streams-demo.jar <servers>
 ### Topic 资源管理
 Kafka Streams 主要依赖于 Kafka 来存储数据及中间状态，会使用到 Kafka 的一些高级特性，例如 compact 类型的 Topic。
 生产环境，不允许自动创建 Topic，在跑应用之前，请先按照下面的提示，在云 Kafka 控制台创建 Topic 资源。
+以下所有 Topic，分区数请保持一致。
 
 #### source topic
 存储源头消息的 Topic，本例中是 streams-plaintext-input，在云 Kafka 控制台创建普通Topic即可。
@@ -37,6 +38,7 @@ Kafka Streams 主要依赖于 Kafka 来存储数据及中间状态，会使用�
 | 最终结果 | toStream | Local存储 | compact（请根据业务进行调整） |
 | 中间分组操作 | groupby | Local存储 | delete |
 | 中间聚合操作 | aggregate, reduce, count | Local存储 | compact |
+
 
 
 社区文档：
