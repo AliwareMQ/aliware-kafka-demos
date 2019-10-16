@@ -12,7 +12,11 @@ var consumer = new Kafka.KafkaConsumer({
 	'security.protocol' : 'sasl_ssl',
 	'ssl.ca.location' : './ca-cert',
 	'sasl.mechanisms' : 'PLAIN',
-	'sasl.username' : config['sasl_plain_username'],
+    'message.max.bytes': 32000,
+    'fetch.max.bytes' : 32000,
+    'fetch.message.max.bytes': 32000,
+    'max.partition.fetch.bytes': 32000,
+    'sasl.username' : config['sasl_plain_username'],
 	'sasl.password' : config['sasl_plain_password'],
     'group.id' : config['consumer_id']
 });

@@ -49,7 +49,6 @@ import org.apache.kafka.streams.state.KeyValueStore;
 public final class WordCountDemo {
 
     public static void main(final String[] args) {
-
         String servers = args.length > 0 ? args[1] : "localhost:9092";
         System.out.println("servers:" + servers);
         final Properties props = new Properties();

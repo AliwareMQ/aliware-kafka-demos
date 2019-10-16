@@ -22,6 +22,12 @@ vpc实例接入demo
 | consumer.js  | group.id | 请参考文档[创建资源](https://help.aliyun.com/document_detail/68328.html?spm=a2c4g.11186623.6.549.xvKAt6) |
 
 ##### vpc-ssl
+需要注意的是，公网带宽不要太小，否则可能导致消息读取失败。参考consumer.js中max.partition.fetch.bytes等参数的设置，最好满足以下条件：
+
+  * max.partition.fetch.bytes  大于  单个消息的最大Size
+  * max.partition.fetch.bytes \* 分区个数 <  公网带宽/8 (带宽的单位是bits，参数的单位是bytes)
+
+
 公网ssl实例接入demo
 
 | demo中配置文件 | 配置项 | 说明 |
@@ -32,3 +38,5 @@ vpc实例接入demo
 | producer.js/consumer.js  | sasl.password | 请修改为实例详情中的密码 |
 | consumer.js  | group.id | 请参考文档[创建资源](https://help.aliyun.com/document_detail/68328.html?spm=a2c4g.11186623.6.549.xvKAt6) |
 | producer.js/consumer.js  | ssl.ca.location | 根证书路径，运行Demo时无需修改，实际部署时注意路径 |
+
+
