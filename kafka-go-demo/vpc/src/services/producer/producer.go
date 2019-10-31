@@ -24,7 +24,7 @@ func init() {
 	mqConfig := sarama.NewConfig()
 
 	mqConfig.Producer.Return.Successes = true
-    mqConfig.Version=sarama.V0_10_0_0
+    mqConfig.Version=sarama.V0_10_2_1
 
 	if err = mqConfig.Validate(); err != nil {
 		msg := fmt.Sprintf("Kafka producer config invalidate. config: %v. err: %v", *cfg, err)

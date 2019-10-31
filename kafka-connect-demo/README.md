@@ -17,10 +17,10 @@ Kafka Connect主要通过各种Source Connector的实现，将数据从第三方
 
 ## 获取Kafka Connect
 根据消息队列Kafka服务端版本，下载对应版本[Kafka](http://kafka.apache.org/downloads)。
-以0.10.0.0版本为例，下载后解压。
+以0.10.2.2版本为例，下载后解压。
 ```shell
-> tar -xzf kafka_2.11-0.10.0.0.tgz
-> cd kafka_2.11-0.10.0.0
+> tar -xzf kafka_2.11-0.10.2.2.tgz
+> cd kafka_2.11-0.10.2.2
 ```
 
 ## 配置Kafka Connect

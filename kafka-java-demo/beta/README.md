@@ -12,11 +12,11 @@
 #### 1、Maven 依赖配置
 
 ```java
-//消息队列 Kafka服务端版本是0.10.0.0，客户端建议使用该版本
+//消息队列 Kafka服务端版本是0.10系列，客户端建议使用该版本
 <dependency>
        <groupId>org.apache.kafka</groupId>
        <artifactId>kafka-clients</artifactId>
-       <version>0.10.0.0</version>
+       <version>0.10.2.2</version>
 </dependency>
 <dependency>
 //SASL鉴权使用的库

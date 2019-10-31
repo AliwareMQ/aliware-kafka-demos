@@ -12,7 +12,7 @@
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
-            <version>0.10.0.0</version>
+            <version>0.10.2.2</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -58,7 +58,7 @@
                     <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>
-                            <mainClass>com.aliyun.openservices.kafka.ons.MainDemo</mainClass>
+                            <mainClass>com.aliyun.openservices.kafka.ons.KafkaProducerDemo</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
