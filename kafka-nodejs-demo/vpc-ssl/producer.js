@@ -31,7 +31,10 @@ producer.on('ready', function() {
   connected = true
   console.log("connect ok")
 
-  //连接成功后，尝试发一条消息
+  });
+
+function produce() {
+	//连接成功后，尝试发一条消息
   try {
     producer.produce(
       // Topic to send the message to
@@ -53,7 +56,7 @@ producer.on('ready', function() {
     console.error('A problem occurred when sending our message');
     console.error(err);
   }
-});
+}
 
 producer.on("disconnected", function() {
   connected = false;
@@ -78,5 +81,6 @@ producer.on('event.error', function(err) {
     console.error('event.error:' + err);
 })
 
-
+//每隔1s发送一条消息，这里是测试，生产环境请按需发送
+setInterval(produce,1000,"Interval");
 
