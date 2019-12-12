@@ -53,6 +53,9 @@ public class KafkaMultiConsumerDemo {
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaProperties.getProperty("group.id"));
         //构造消息对象，也即生成一个消费实例
 
+        //hostname校验改成空
+        props.put(SslConfigs.SSL_ENDPOINT_IDENTIFICATION_ALGORITHM_CONFIG, "");
+
         int consumerNum = 2;
         Thread[] consumerThreads = new Thread[consumerNum];
         for (int i = 0; i < consumerNum; i++) {

@@ -48,6 +48,9 @@ public class KafkaConsumerDemo {
         //当前消费实例所属的消费组，请在控制台申请之后填写
         //属于同一个组的消费实例，会负载消费消息
         props.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaProperties.getProperty("group.id"));
+        //hostname校验改成空
+        props.put(SslConfigs.SSL_ENDPOINT_IDENTIFICATION_ALGORITHM_CONFIG, "");
+
         //构造消息对象，也即生成一个消费实例
         KafkaConsumer<String, String> consumer = new org.apache.kafka.clients.consumer.KafkaConsumer<String, String>(props);
         //设置消费组订阅的Topic，可以订阅多个

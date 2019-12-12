@@ -6,6 +6,7 @@ import java.util.Properties;
 import java.util.concurrent.Future;
 
 import java.util.concurrent.TimeUnit;
+import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -30,7 +31,6 @@ public class KafkaProducerDemo {
         props.put(ProducerConfig.RETRIES_CONFIG, 5);
         //设置客户端内部重试间隔
         props.put(ProducerConfig.RECONNECT_BACKOFF_MS_CONFIG, 3000);
-
         //构造Producer对象，注意，该对象是线程安全的，一般来说，一个进程内一个Producer对象即可；
         //如果想提高性能，可以多构造几个对象，但不要太多，最好不要超过5个
         KafkaProducer<String, String> producer = new KafkaProducer<String, String>(props);
