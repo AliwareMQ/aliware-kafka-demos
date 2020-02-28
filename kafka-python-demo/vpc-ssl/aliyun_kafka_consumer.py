@@ -12,8 +12,8 @@ conf = setting.kafka_setting
 
 context = ssl.create_default_context()
 context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
-context.verify_mode = ssl.CERT_REQUIRED
-# context.check_hostname = True
+context.verify_mode = ssl.CERT_NONE
+context.check_hostname = False
 context.load_verify_locations("ca-cert")
 
 consumer = KafkaConsumer(bootstrap_servers=conf['bootstrap_servers'],
