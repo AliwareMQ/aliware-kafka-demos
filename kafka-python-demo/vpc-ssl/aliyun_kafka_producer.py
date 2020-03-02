@@ -13,7 +13,13 @@ print conf
 
 context = ssl.create_default_context()
 context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
-context.verify_mode = ssl.CERT_NONE
+## The new python(2.7.8+) may cannot ignore the hostname check,
+## you could set to ssl.CERT_NONE to walk around the problem,
+## or you can change the client to confluent-python-demo 
+
+#context.verify_mode = ssl.CERT_NONE
+context.verify_mode = ssl.CERT_REQUIRED
+
 context.check_hostname = False
 context.load_verify_locations("ca-cert")
 

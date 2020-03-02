@@ -1,3 +1,6 @@
+## 重要提示
+建议使用Confluent公司提供的Python客户端，详情请参考[confluent-python](https://github.com/AliwareMQ/aliware-kafka-demos/tree/master/kafka-confluent-python-demo)。
+
 ### demo说明
 demo的目的仅仅是把应用跑起来作为参考，更多参数和程序健壮性请参考官方文档设置以保证客户端的稳定和性能。
 相关文档请参考[kafka-python项目地址](https://github.com/dpkp/kafka-python)和[Kafka官网](https://kafka.apache.org/0100/documentation.html)
