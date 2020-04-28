@@ -11,7 +11,7 @@ var producer = new Kafka.Producer({
     'dr_cb': true,
     'dr_msg_cb': true,
     'security.protocol' : 'sasl_ssl',
-	'ssl.ca.location' : './ca-cert',
+	'ssl.ca.location' : './ca-cert.pem',
 	'sasl.mechanisms' : 'PLAIN',
 	'sasl.username' : config['sasl_plain_username'],
 	'sasl.password' : config['sasl_plain_password']
