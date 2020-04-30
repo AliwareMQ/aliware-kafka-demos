@@ -10,12 +10,13 @@ demo的目的仅仅是把应用跑起来作为参考，很多参数请参考文�
 1. 修改application.properties中的
 kafka.bootstrap-servers=XXX
 kafka.consumer.group=XXX
-kafka.topic.name=XXX
+kafka.output.topic.name=XXX
+kafka.input.topic.name=XXX
 kafka.ssl.truststore.location=/XXX/kafka.client.truststore.jks
 
 2. 修改kafka_client_jaas.conf中的username和password，可从实例详情获取。
 
-3. 可根据需求修改相应的source和sink
+3. 可根据需求修改相应的Output和Input
 
 ## 文档
 参考 https://docs.spring.io/spring-cloud-stream/docs/current/reference/htmlsingle/
