@@ -11,7 +11,7 @@ import org.springframework.integration.core.MessageSource;
 import org.springframework.messaging.support.MessageBuilder;
 
 @SpringBootApplication
-@EnableBinding({MySink.class, MySource.class})
+@EnableBinding({MyInput.class, MyOutput.class})
 public class KafkaDemoApplication {
 
 
@@ -19,13 +19,13 @@ public class KafkaDemoApplication {
         SpringApplication.run(KafkaDemoApplication.class, args);
     }
 
-    @StreamListener(MySink.INPUT)
+    @StreamListener(MyInput.INPUT)
     public void log(String payload) {
         System.out.println("Receive:" + payload);
     }
 
     @Bean
-    @InboundChannelAdapter(value = MySource.OUTPUT, poller = @Poller(fixedDelay = "1000", maxMessagesPerPoll = "1"))
+    @InboundChannelAdapter(value = MyOutput.OUTPUT, poller = @Poller(fixedDelay = "1000", maxMessagesPerPoll = "1"))
     public MessageSource<String> timerMessageSource() {
         return () -> {
             String value = " hello word !! ";
