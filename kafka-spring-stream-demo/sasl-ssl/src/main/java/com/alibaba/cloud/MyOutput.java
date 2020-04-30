@@ -3,10 +3,10 @@ package com.alibaba.cloud;
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
 
-public interface MySource {
+public interface MyOutput {
 
-    String OUTPUT = "myChannel";
+    String OUTPUT = "MyOutput";
 
-    @Output(MySource.OUTPUT)
+    @Output(MyOutput.OUTPUT)
     MessageChannel output();
 }
