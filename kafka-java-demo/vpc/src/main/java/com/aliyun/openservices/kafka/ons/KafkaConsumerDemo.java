@@ -38,7 +38,11 @@ public class KafkaConsumerDemo {
         List<String> subscribedTopics =  new ArrayList<String>();
         //如果需要订阅多个Topic，则在这里add进去即可
         //每个Topic需要先在控制台进行创建
-        subscribedTopics.add(kafkaProperties.getProperty("topic"));
+        String topicStr = kafkaProperties.getProperty("topic");
+        String[] topics = topicStr.split(",");
+        for (String topic: topics) {
+            subscribedTopics.add(topic.trim());
+        }
         consumer.subscribe(subscribedTopics);
 
         //循环消费消息
