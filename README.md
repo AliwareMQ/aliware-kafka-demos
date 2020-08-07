@@ -10,5 +10,5 @@
 商业化参考文档[快速入门](https://help.aliyun.com/document_detail/99949.html?spm=a2c4g.11186623.6.554.2be1c453UXdc4D) 
 
 
-### [国内镜像地址](https://code.aliyun.com/alikafka/aliware-kafka-demos)
+### [阿里云镜像地址](https://code.aliyun.com/alikafka/aliware-kafka-demos)
 ### [github镜像地址](https://github.com/AliwareMQ/aliware-kafka-demos)
