@@ -1,0 +1,11 @@
+{
+  "name": "kafka-nodejs-demo",
+  "version": "1.0.0",
+  "description": "demo for aliyun kafka",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "node-rdkafka": "^1.0.6",
+    "co": "*"
+  }
+}
