@@ -9,7 +9,12 @@ var consumer = new Kafka.KafkaConsumer({
 	/*'debug': 'all',*/ 
     'api.version.request': 'true',
 	'bootstrap.servers': config['bootstrap_servers'],
-    'group.id' : config['consumer_id']
+    'group.id' : config['consumer_id'],
+    'heartbeat.interval.ms': 3000,
+    'session.timeout.ms': 30000,
+    'max.poll.interval.ms': 40000,
+    'fetch.max.bytes': 1024000,
+    'max.partition.fetch.bytes': 256000
 });
 
 
