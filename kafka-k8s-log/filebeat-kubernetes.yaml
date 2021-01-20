@@ -31,11 +31,12 @@ data:
     #          - /var/log/containers/*${data.kubernetes.container.id}.log
 
     processors:
+
       - add_host_metadata:
 
     output.kafka:
       # 指定kafka服务域名地址
-      hosts: ["192.168.0.53:9092","192.168.0.52:9092", 192.168.0.51:9092]
+      hosts: [192.168.0.53:9092,192.168.0.52:9092,192.168.0.51:9092]
       # 指定topic的名称
       topic: filebeat-k8s
       # 指定阿里云kafka版本，具体版本号请咨询相关人员
