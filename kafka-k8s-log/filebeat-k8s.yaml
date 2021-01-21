@@ -40,7 +40,7 @@ data:
       # 指定topic的名称
       topic: ${KAFKA_TOPIC}
       # 指定阿里云kafka版本，具体版本号请咨询相关人员
-      version: 0.10.2
+      version: ${KAFKA_VERSION}
       required_acks: 1
       max_message_bytes: 1000000
       compression: snappy
@@ -74,9 +74,14 @@ spec:
         #args: ["-c", "/etc/filebeat.yml", "-e"]
         env:
         - name: KAFKA_HOSTS
-          value: "[192.168.0.53:9092,192.168.0.52:9092,192.168.0.51:9092]"
+          #value: "[192.168.0.53:9092,192.168.0.52:9092,192.168.0.51:9092]"
+          value: "[XXXX:XX,XXXX:XX,XXXX:XX]"
         - name: KAFKA_TOPIC
-          value: "filebeat-k8s"
+          #value: "filebeat-k8s"
+          value: "XXX"
+        - name: KAFKA_VERSION
+          #value: "0.10.2"
+          value: "XXX"
         - name: NODE_NAME
           valueFrom:
             fieldRef:
