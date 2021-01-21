@@ -70,7 +70,7 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: filebeat
-        image: docker.elastic.co/beats/filebeat:7.10.2
+        image: docker.elastic.co/beats/filebeat-oss:7.10.2
         #args: ["-c", "/etc/filebeat.yml", "-e"]
         env:
         - name: KAFKA_HOSTS
