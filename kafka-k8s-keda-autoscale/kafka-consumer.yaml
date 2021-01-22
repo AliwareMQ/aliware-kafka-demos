@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alibaba-kafka-consumer
+  namespace: default
+  labels:
+    app: alibaba-kafka-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: alibaba-kafka-consumer
+  template:
+    metadata:
+      labels:
+        app: alibaba-kafka-consumer
+    spec:
+      containers:
+      - name: alibaba-kafka-consumer
+        image: registry.cn-beijing.aliyuncs.com/kafka-test/alibaba-kafka-client:latest
+        env:
+        - name: kafka_server
+          value: "192.168.0.53:9092,192.168.0.52:9092,192.168.0.51:9092"
+        - name: kafka_topic
+          value: kafka-demo-test
+        - name: kafka_group
+          value: kafka-consumer-demo-on-k8s
+        - name: produce_enable
+          value: "false"
+        - name: consume_enable
+          value: "true"
+

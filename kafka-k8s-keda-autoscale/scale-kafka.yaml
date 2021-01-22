@@ -1,0 +1,25 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: alibaba-kafka-consumer-eda
+  namespace: default
+  labels:
+    deploymentName: alibaba-kafka-consumer-eda
+spec:
+  scaleTargetRef:
+    name: alibaba-kafka-consumer
+  pollingInterval: 30
+  cooldownPeriod:  300
+  minReplicaCount: 0
+  maxReplicaCount: 12
+  #https://keda.sh/docs/2.0/scalers/apache-kafka/#example
+  triggers:
+  - type: kafka
+    metadata:
+      bootstrapServers: 192.168.0.53:9092
+      consumerGroup: kafka-consumer-demo-on-k8s
+      topic: kafka-demo-test
+      lagThreshold: '1000'
+      offsetResetPolicy: latest
+---
+
