@@ -21,9 +21,9 @@ go 1.13+
 ### 测试执行
 ```
 # 发送消息
-go run producer/producer.go
+go run -mod=vendor producer/producer.go
 # 消费消息
-go run consumer/consumer.go
+go run -mod=vendor consumer/consumer.go
 ```
 
 
