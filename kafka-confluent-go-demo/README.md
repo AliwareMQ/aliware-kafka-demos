@@ -13,10 +13,10 @@ go 1.13+
 | topic | 控制台上申请的 Topic | 是
 | group.id | 控制台上申请的 ConsumerGroup | 否，只有Consumer需要 |
 | bootstrap.servers | 实例详情页查看接入点 | 是 |
-| security.protocol | 参考文档选取，默认是plaintext | 是 |
-| sasl.mechanism | 鉴权机制，默认是 PLAIN | 否 |
-| sasl.username | 实例详情页获取 | 否 |
-| sasl.password | 实例详情页获取 | 否 |
+| security.protocol | 默认是plaintext, 可选sasl_ssl, sasl_plaintext | 是 |
+| sasl.mechanism | 默认是 PLAIN, 可选SCRAM-SHA-256 | 如果协议带sasl则必须 |
+| sasl.username | 实例详情页获取 | 如果协议带sasl则必须 |
+| sasl.password | 实例详情页获取 | 如果协议带sasl则必须 |
 
 ### 测试执行
 ```
