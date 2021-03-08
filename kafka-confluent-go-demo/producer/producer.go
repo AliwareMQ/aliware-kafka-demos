@@ -14,6 +14,7 @@ type KafkaConfig struct {
 	BootstrapServers    string `json:"bootstrap.servers"`
 	SecurityProtocol string `json:"security.protocol"`
 	SslCaLocation string `json:"ssl.ca.location"`
+	SaslMechanism string `json:"sasl.mechanism"`
 	SaslUsername string `json:"sasl.username"`
 	SaslPassword string `json:"sasl.password"`
 }
@@ -62,14 +63,17 @@ func doInitProducer(cfg *KafkaConfig) *kafka.Producer {
 			kafkaconf.SetKey("security.protocol", "plaintext");
 		case "sasl_ssl":
 			kafkaconf.SetKey("security.protocol", "sasl_ssl");
-			kafkaconf.SetKey("ssl.ca.location", "./conf/ca-cet.pem");
+			kafkaconf.SetKey("ssl.ca.location", "conf/ca-cert.pem");
 			kafkaconf.SetKey("sasl.username", cfg.SaslUsername);
 			kafkaconf.SetKey("sasl.password", cfg.SaslPassword);
-		case "sasl_plaintext":
+			kafkaconf.SetKey("sasl.mechanism", cfg.SaslMechanism)
+	case "sasl_plaintext":
+			kafkaconf.SetKey("sasl.mechanism", "PLAIN")
 			kafkaconf.SetKey("security.protocol", "sasl_plaintext");
 			kafkaconf.SetKey("sasl.username", cfg.SaslUsername);
 			kafkaconf.SetKey("sasl.password", cfg.SaslPassword);
-		default:
+			kafkaconf.SetKey("sasl.mechanism", cfg.SaslMechanism)
+	default:
 			panic(kafka.NewError(kafka.ErrUnknownProtocol, "unknown protocol", true))
 	}
 

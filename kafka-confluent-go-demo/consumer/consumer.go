@@ -12,6 +12,7 @@ type KafkaConfig struct {
 	GroupId    string `json:"group.id"`
 	BootstrapServers    string `json:"bootstrap.servers"`
 	SecurityProtocol string `json:"security.protocol"`
+	SaslMechanism string `json:"sasl.mechanism"`
 	SaslUsername string `json:"sasl.username"`
 	SaslPassword string `json:"sasl.password"`
 }
@@ -63,13 +64,16 @@ func doInitConsumer(cfg *KafkaConfig) *kafka.Consumer {
 		kafkaconf.SetKey("security.protocol", "plaintext");
 	case "sasl_ssl":
 		kafkaconf.SetKey("security.protocol", "sasl_ssl");
-		kafkaconf.SetKey("ssl.ca.location", "./conf/ca-cet.pem");
+		kafkaconf.SetKey("ssl.ca.location", "./conf/ca-cert.pem");
 		kafkaconf.SetKey("sasl.username", cfg.SaslUsername);
 		kafkaconf.SetKey("sasl.password", cfg.SaslPassword);
+		kafkaconf.SetKey("sasl.mechanism", cfg.SaslMechanism)
 	case "sasl_plaintext":
 		kafkaconf.SetKey("security.protocol", "sasl_plaintext");
 		kafkaconf.SetKey("sasl.username", cfg.SaslUsername);
 		kafkaconf.SetKey("sasl.password", cfg.SaslPassword);
+		kafkaconf.SetKey("sasl.mechanism", cfg.SaslMechanism)
+
 	default:
 		panic(kafka.NewError(kafka.ErrUnknownProtocol, "unknown protocol", true))
 	}
