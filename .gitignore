@@ -7,13 +7,15 @@ target/
 node_modules/
 localbin
 
+docker/packages 
+
 ##ignore go
 bin/ 
 pkg/
-github.com/
-**/github.com/
-golang.org/
-**/golang.org/
+src/github.com/
+**/src/github.com/
+src/golang.org/
+**/src/golang.org/
 
 
 #pom.xml.tag

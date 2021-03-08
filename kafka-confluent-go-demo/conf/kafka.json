@@ -1,0 +1,8 @@
+{
+  "topic": "XXX",
+  "group.id": "XXX",
+  "bootstrap.servers" : "XXX:XX,XXX:XX,XXX:XX",
+  "security.protocol" : "plaintext",
+  "sasl.username" : "XXX",
+  "sasl.password" : "XXX"
+}
