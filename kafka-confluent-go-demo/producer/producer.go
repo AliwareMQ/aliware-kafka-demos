@@ -6,6 +6,8 @@ import (
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"os"
 	"path/filepath"
+	"strings"
+	"time"
 )
 
 type KafkaConfig struct {
@@ -52,6 +54,8 @@ func doInitProducer(cfg *KafkaConfig) *kafka.Producer {
 	var kafkaconf = &kafka.ConfigMap{
 		"api.version.request": "true",
 		"message.max.bytes": 1000000,
+		"batch.num.messages": 1000,
+		"batch.size" : 16384,
 		"linger.ms": 10,
 		"retries": 30,
 		"retry.backoff.ms": 1000,
@@ -101,21 +105,24 @@ func main() {
 			switch ev := e.(type) {
 			case *kafka.Message:
 				if ev.TopicPartition.Error != nil {
-					fmt.Printf("Delivery failed: %v\n", ev.TopicPartition)
+					fmt.Printf("produce failed %v\n", ev.TopicPartition)
 				} else {
-					fmt.Printf("Delivered message to %v\n", ev.TopicPartition)
+					fmt.Printf("produce ok %v %v \n", ev.TopicPartition, ev.Value)
 				}
 			}
 		}
 	}()
 
     // Produce messages to topic (asynchronously)
-	topic := cfg.Topic
-	for _, word := range []string{"Welcome", "to", "the", "Confluent", "Kafka", "Golang", "client"} {
-		producer.Produce(&kafka.Message{
-			TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
-			Value:          []byte(word),
-		}, nil)
+    topics := strings.Split(cfg.Topic, ",")
+    for _, topic := range topics {
+    	for i := 0; i < 100; i++ {
+    		word := string(time.Now().Unix()) + "_welcome_to_alibaba_cloud_kafka_" + string(i)
+			producer.Produce(&kafka.Message{
+				TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
+				Value:          []byte(word),
+			}, nil)
+		}
 	}
 
 	// Wait for message deliveries before shutting down
