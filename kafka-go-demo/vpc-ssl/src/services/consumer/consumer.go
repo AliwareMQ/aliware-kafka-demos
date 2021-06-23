@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"time"
 
 	"services"
 	"os/signal"
@@ -48,7 +49,7 @@ func init() {
 
 	clusterCfg.Net.TLS.Enable = true
 	clusterCfg.Consumer.Return.Errors = true
-	clusterCfg.Consumer.Offsets.CommitInterval=1000
+	clusterCfg.Consumer.Offsets.CommitInterval =  1 * time.Second
 	clusterCfg.Consumer.Offsets.Initial = sarama.OffsetNewest
 	clusterCfg.Group.Return.Notifications = true
 

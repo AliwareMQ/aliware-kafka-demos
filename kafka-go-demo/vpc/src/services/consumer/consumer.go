@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"github.com/Shopify/sarama"
 	"github.com/bsm/sarama-cluster"
+	"time"
 )
 
 var cfg *configs.MqConfig
@@ -24,7 +25,7 @@ func init() {
 	clusterCfg := cluster.NewConfig()
 
 	clusterCfg.Consumer.Return.Errors = true
-	clusterCfg.Consumer.Offsets.CommitInterval=1000
+	clusterCfg.Consumer.Offsets.CommitInterval = 1 * time.Second
 	clusterCfg.Consumer.Offsets.Initial = sarama.OffsetNewest
 	clusterCfg.Group.Return.Notifications = true
 
