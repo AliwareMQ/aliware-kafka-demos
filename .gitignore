@@ -13,10 +13,10 @@ docker/packages
 ##ignore go
 bin/ 
 pkg/
-src/github.com/
-**/src/github.com/
-src/golang.org/
-**/src/golang.org/
+#src/github.com/
+#**/src/github.com/
+#src/golang.org/
+#**/src/golang.org/
 
 
 #pom.xml.tag

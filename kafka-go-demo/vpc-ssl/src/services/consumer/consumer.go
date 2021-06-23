@@ -48,7 +48,8 @@ func init() {
 
 	clusterCfg.Net.TLS.Enable = true
 	clusterCfg.Consumer.Return.Errors = true
-	clusterCfg.Consumer.Offsets.Initial = sarama.OffsetOldest
+	clusterCfg.Consumer.Offsets.CommitInterval=1000
+	clusterCfg.Consumer.Offsets.Initial = sarama.OffsetNewest
 	clusterCfg.Group.Return.Notifications = true
 
 	clusterCfg.Version = sarama.V0_10_2_1

@@ -53,6 +53,7 @@ func produce(topic string, key string, content string) error {
 	if err != nil {
 		msg := fmt.Sprintf("Send Error topic: %v. key: %v. content: %v", topic, key, content)
 		fmt.Println(msg)
+
 		return err
 	}
     fmt.Printf("Send OK topic:%s key:%s value:%s\n", topic, key, content)
