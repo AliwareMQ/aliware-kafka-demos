@@ -63,8 +63,14 @@ func produce(topic string, key string, content string) error {
 
 func main() {
     //the key of the kafka messages 
-    //do not set the same the key for all messages, it may cause partition im-balance 
-    key := strconv.FormatInt(time.Now().UTC().UnixNano(), 10)
-    value := "this is a kafka message!"
-	produce(cfg.Topics[0], key, value)
+    //do not set the same the key for all messages, it may cause partition im-balance
+	i := 0
+	for {
+		key := strconv.FormatInt(time.Now().UTC().UnixNano(), 10)
+		i = i + 1
+		value := "this is a kafka message from sarama go " + strconv.Itoa(i)
+		produce(cfg.Topics[0], key, value)
+		time.Sleep(time.Duration(2)*time.Millisecond)
+	}
+
 }
