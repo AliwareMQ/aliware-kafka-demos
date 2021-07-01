@@ -9,6 +9,7 @@ import (
 )
 type KafkaConfig struct {
 	Topic      string `json:"topic"`
+	Topic2      string `json:"topic"`
 	GroupId    string `json:"group.id"`
 	BootstrapServers    string `json:"bootstrap.servers"`
 	SecurityProtocol string `json:"security.protocol"`
@@ -95,7 +96,7 @@ func main() {
 	cfg := loadJsonConfig();
 	consumer := doInitConsumer(cfg)
 
-	consumer.SubscribeTopics([]string{cfg.Topic}, nil)
+	consumer.SubscribeTopics([]string{cfg.Topic, cfg.Topic2}, nil)
 
 	for {
 		msg, err := consumer.ReadMessage(-1)

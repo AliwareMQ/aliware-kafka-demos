@@ -12,6 +12,7 @@ import (
 
 type KafkaConfig struct {
 	Topic      string `json:"topic"`
+	Topic2      string `json:"topic2"`
 	GroupId    string `json:"group.id"`
 	BootstrapServers    string `json:"bootstrap.servers"`
 	SecurityProtocol string `json:"security.protocol"`
