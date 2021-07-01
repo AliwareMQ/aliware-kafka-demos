@@ -6,6 +6,8 @@ import (
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 	"os"
 	"path/filepath"
+	"strconv"
+	"time"
 )
 
 type KafkaConfig struct {
@@ -111,13 +113,19 @@ func main() {
 
     // Produce messages to topic (asynchronously)
 	topic := cfg.Topic
-	for _, word := range []string{"Welcome", "to", "the", "Confluent", "Kafka", "Golang", "client"} {
+	i := 0
+	for {
+		key := strconv.FormatInt(time.Now().UTC().UnixNano(), 10)
+		i = i + 1
+		value := "this is a kafka message from sarama go " + strconv.Itoa(i)
+
 		producer.Produce(&kafka.Message{
 			TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
-			Value:          []byte(word),
+			Value:          []byte(value),
+			Key: 			[]byte(key),
 		}, nil)
+		time.Sleep(time.Duration(1) * time.Millisecond)
 	}
-
 	// Wait for message deliveries before shutting down
 	producer.Flush(15 * 1000)
 }

@@ -91,6 +91,6 @@ func main() {
 		i = i + 1
 		value := "this is a kafka message from sarama go " + strconv.Itoa(i)
 		produce(cfg.Topics[0], key, value)
-		time.Sleep(time.Duration(2)*time.Millisecond)
+		time.Sleep(time.Duration(1) * time.Millisecond)
 	}
 }
