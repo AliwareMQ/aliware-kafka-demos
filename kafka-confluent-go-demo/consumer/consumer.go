@@ -9,7 +9,7 @@ import (
 )
 type KafkaConfig struct {
 	Topic      string `json:"topic"`
-	Topic2      string `json:"topic"`
+	Topic2      string `json:"topic2"`
 	GroupId    string `json:"group.id"`
 	BootstrapServers    string `json:"bootstrap.servers"`
 	SecurityProtocol string `json:"security.protocol"`
@@ -103,7 +103,8 @@ func main() {
 		if err == nil {
 			fmt.Printf("Message on %s: %s\n", msg.TopicPartition, string(msg.Value))
 		} else {
-			// The client will automatically try to recover from all errors.
+			// The client will
+			//automatically try to recover from all errors.
 			fmt.Printf("Consumer error: %v (%v)\n", err, msg)
 		}
 	}
