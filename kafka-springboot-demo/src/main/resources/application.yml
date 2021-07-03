@@ -1,0 +1,12 @@
+server:
+    port: 10086
+spring:
+    kafka:
+         bootstrap-servers: kafka-cn-internet.aliyun.com:8080
+app:
+    topic:
+        test: alikafka_test
+    group:
+        id: CID_alikafka_test
+logging:
+  config: classpath:logback.xml
