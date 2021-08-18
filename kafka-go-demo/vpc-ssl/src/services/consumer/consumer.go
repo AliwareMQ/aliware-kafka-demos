@@ -5,12 +5,11 @@ import (
 	"crypto/x509"
 	"fmt"
 	"io/ioutil"
+	configs "kafkasaramagodemo/src/services"
 	"os"
 	"time"
 
-	"services"
 	"os/signal"
-
 	"github.com/Shopify/sarama"
 	"github.com/bsm/sarama-cluster"
 )

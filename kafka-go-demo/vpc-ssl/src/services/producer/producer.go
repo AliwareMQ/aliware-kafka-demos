@@ -5,12 +5,14 @@ import (
 	"crypto/x509"
 	"fmt"
 	"io/ioutil"
-	"services"
+	configs "kafkasaramagodemo/src/services"
     "time"
     "strconv"
 
 	"github.com/Shopify/sarama"
 )
+
+
 
 var cfg *configs.MqConfig
 var producer sarama.SyncProducer

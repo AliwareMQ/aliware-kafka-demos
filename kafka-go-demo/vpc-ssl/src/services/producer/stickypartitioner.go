@@ -1,14 +1,14 @@
 package main
 
 import (
+	"github.com/Shopify/sarama"
 	"hash"
 	"hash/fnv"
-	"github.com/Shopify/sarama"
 )
 
 //implement the function pointer
 // type PartitionerConstructor func(topic string) Partitioner
-func NewStickyPartitioner(topic string) Partitioner {
+func NewStickyPartitioner(topic string) sarama.Partitioner {
 	p := new(stickyPartitioner)
 	p.hasher = fnv.New32a()
 	p.referenceAbs = false
@@ -24,10 +24,10 @@ type stickyPartitioner struct {
 	totalSize int32
 }
 
-func (p *stickyPartitioner) Partition(message *ProducerMessage, numPartitions int32) (int32, error) {
+func (p *stickyPartitioner) Partition(message *sarama.ProducerMessage, numPartitions int32) (int32, error) {
 	if message.Key == nil {
 		if message.Value != nil {
-			p.totalSize += message.Value.Length()
+			p.totalSize += int32(message.Value.Length())
 		}
 		//prevent overflow
 		if p.totalSize > p.stickSize * numPartitions {
@@ -68,6 +68,6 @@ func (p *stickyPartitioner) RequiresConsistency() bool {
 	return true
 }
 
-func (p *stickyPartitioner) MessageRequiresConsistency(message *ProducerMessage) bool {
+func (p *stickyPartitioner) MessageRequiresConsistency(message *sarama.ProducerMessage) bool {
 	return message.Key != nil
 }
