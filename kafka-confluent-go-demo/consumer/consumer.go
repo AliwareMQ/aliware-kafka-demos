@@ -61,15 +61,15 @@ func doInitConsumer(cfg *KafkaConfig) *kafka.Consumer {
 	kafkaconf.SetKey("group.id", cfg.GroupId)
 
 	switch cfg.SecurityProtocol {
-	case "plaintext" :
+	case "PLAINTEXT" :
 		kafkaconf.SetKey("security.protocol", "plaintext");
-	case "sasl_ssl":
+	case "SASL_SSL":
 		kafkaconf.SetKey("security.protocol", "sasl_ssl");
 		kafkaconf.SetKey("ssl.ca.location", "./conf/ca-cert.pem");
 		kafkaconf.SetKey("sasl.username", cfg.SaslUsername);
 		kafkaconf.SetKey("sasl.password", cfg.SaslPassword);
 		kafkaconf.SetKey("sasl.mechanism", cfg.SaslMechanism)
-	case "sasl_plaintext":
+	case "SASL_PLAINTEXT":
 		kafkaconf.SetKey("security.protocol", "sasl_plaintext");
 		kafkaconf.SetKey("sasl.username", cfg.SaslUsername);
 		kafkaconf.SetKey("sasl.password", cfg.SaslPassword);

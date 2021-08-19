@@ -62,22 +62,22 @@ func doInitProducer(cfg *KafkaConfig) *kafka.Producer {
 	kafkaconf.SetKey("bootstrap.servers", cfg.BootstrapServers)
 
 	switch cfg.SecurityProtocol {
-		case "plaintext" :
-			kafkaconf.SetKey("security.protocol", "plaintext");
-		case "sasl_ssl":
-			kafkaconf.SetKey("security.protocol", "sasl_ssl");
-			kafkaconf.SetKey("ssl.ca.location", "conf/ca-cert.pem");
-			kafkaconf.SetKey("sasl.username", cfg.SaslUsername);
-			kafkaconf.SetKey("sasl.password", cfg.SaslPassword);
-			kafkaconf.SetKey("sasl.mechanism", cfg.SaslMechanism)
-	case "sasl_plaintext":
-			kafkaconf.SetKey("sasl.mechanism", "PLAIN")
-			kafkaconf.SetKey("security.protocol", "sasl_plaintext");
-			kafkaconf.SetKey("sasl.username", cfg.SaslUsername);
-			kafkaconf.SetKey("sasl.password", cfg.SaslPassword);
-			kafkaconf.SetKey("sasl.mechanism", cfg.SaslMechanism)
+	case "PLAINTEXT" :
+		kafkaconf.SetKey("security.protocol", "plaintext");
+	case "SASL_SSL":
+		kafkaconf.SetKey("security.protocol", "sasl_ssl");
+		kafkaconf.SetKey("ssl.ca.location", "conf/ca-cert.pem");
+		kafkaconf.SetKey("sasl.username", cfg.SaslUsername);
+		kafkaconf.SetKey("sasl.password", cfg.SaslPassword);
+		kafkaconf.SetKey("sasl.mechanism", cfg.SaslMechanism)
+	case "SASL_PLAINTEXT":
+		kafkaconf.SetKey("sasl.mechanism", "PLAIN")
+		kafkaconf.SetKey("security.protocol", "sasl_plaintext");
+		kafkaconf.SetKey("sasl.username", cfg.SaslUsername);
+		kafkaconf.SetKey("sasl.password", cfg.SaslPassword);
+		kafkaconf.SetKey("sasl.mechanism", cfg.SaslMechanism)
 	default:
-			panic(kafka.NewError(kafka.ErrUnknownProtocol, "unknown protocol", true))
+		panic(kafka.NewError(kafka.ErrUnknownProtocol, "unknown protocol", true))
 	}
 
 	producer, err := kafka.NewProducer(kafkaconf)
@@ -85,7 +85,7 @@ func doInitProducer(cfg *KafkaConfig) *kafka.Producer {
 		panic(err)
 	}
 	fmt.Print("init kafka producer success\n")
-	return producer;
+	return producer
 }
 
 func main() {
