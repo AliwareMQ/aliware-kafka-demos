@@ -17,7 +17,6 @@ import (
 	"time"
 )
 
-
 type KafkaConfig struct {
 	Topic      string `json:"topic"`
 	Topic2      string `json:"topic2"`
@@ -61,51 +60,73 @@ func loadJsonConfig() *KafkaConfig {
 	return  config
 }
 
+func generateKafkaConf(cfg *KafkaConfig)  *sarama.Config{
+	kafkaConf := sarama.NewConfig()
+	kafkaConf.Version = sarama.V2_2_0_0
+	// set to newest in production environment to avoid large amount of duplication
+	kafkaConf.Metadata.RefreshFrequency = 5 * time.Minute
+	kafkaConf.Consumer.Offsets.Initial = sarama.OffsetNewest
+	//Set to 5 minutes, align with jvm consumer
+	kafkaConf.Consumer.Group.Rebalance.Timeout = 	5 * 60 * time.Second
+
+
+	switch cfg.SecurityProtocol {
+	case "PLAINTEXT" :
+		//do nothing
+	case "SASL_SSL":
+		kafkaConf.Net.SASL.Enable = true
+		kafkaConf.Net.SASL.User = cfg.SaslUsername
+		kafkaConf.Net.SASL.Password = cfg.SaslPassword
+		kafkaConf.Net.SASL.Handshake = true
+
+		certBytes, err := ioutil.ReadFile(getFullPath("ca-cert"))
+		if err != nil {
+			log.Panicf("kafka client read cert file failed %v", err)
+		}
+		clientCertPool := x509.NewCertPool()
+		ok := clientCertPool.AppendCertsFromPEM(certBytes)
+		if !ok {
+			log.Panicf("kafka client failed to parse root certificate")
+		}
+		kafkaConf.Net.TLS.Config = &tls.Config{
+			RootCAs:            clientCertPool,
+			InsecureSkipVerify: true,
+		}
+		kafkaConf.Net.TLS.Enable = true
+	case "SASL_PLAINTEXT":
+		kafkaConf.Net.SASL.Enable = true
+		kafkaConf.Net.SASL.User = cfg.SaslUsername
+		kafkaConf.Net.SASL.Password = cfg.SaslPassword
+		kafkaConf.Net.SASL.Handshake = true
+	default:
+		log.Panicf("unknown protocol %v", cfg.SecurityProtocol)
+	}
+
+	switch cfg.SaslMechanism {
+	case "PLAIN":
+		//do nothing
+	case "SCRAM-SHA-256":
+		kafkaConf.Net.SASL.SCRAMClientGeneratorFunc = func() sarama.SCRAMClient { return &XDGSCRAMClient{HashGeneratorFcn: SHA256} }
+		kafkaConf.Net.SASL.Mechanism = sarama.SASLMechanism(sarama.SASLTypeSCRAMSHA256)
+	case "SCRAM-SHA-512":
+		kafkaConf.Net.SASL.SCRAMClientGeneratorFunc = func() sarama.SCRAMClient { return &XDGSCRAMClient{HashGeneratorFcn: SHA512} }
+		kafkaConf.Net.SASL.Mechanism = sarama.SASLMechanism(sarama.SASLTypeSCRAMSHA512)
+	default:
+		log.Fatalf("invalid SHA algorithm \"%s\": can be either \"SCRAM-SHA-256\" or \"SCRAM-SHA-512\"", cfg.SaslMechanism)
+	}
+
+	if err := kafkaConf.Validate(); err != nil {
+		log.Panicf("Kafka producer config invalidate. config: %v. err: %v", *cfg, err)
+	}
+	return kafkaConf
+}
+
 func main() {
 	log.Println("Starting a new Sarama consumer")
 
 	cfg := loadJsonConfig()
-	mqConfig := sarama.NewConfig()
-	mqConfig.Version = sarama.V2_2_0_0
-	// set to newest in production environment to avoid large amount of duplication
-	mqConfig.Metadata.RefreshFrequency = 5 * time.Minute
-	mqConfig.Consumer.Offsets.Initial = sarama.OffsetNewest
 
-	switch cfg.SecurityProtocol {
-		case "plaintext" :
-			//do nothing
-		case "sasl_ssl":
-			mqConfig.Net.SASL.Enable = true
-			mqConfig.Net.SASL.User = cfg.SaslUsername
-			mqConfig.Net.SASL.Password = cfg.SaslPassword
-			mqConfig.Net.SASL.Handshake = true
-
-			certBytes, err := ioutil.ReadFile(getFullPath("ca-cert"))
-			if err != nil {
-				log.Panicf("kafka client read cert file failed %v", err)
-			}
-			clientCertPool := x509.NewCertPool()
-			ok := clientCertPool.AppendCertsFromPEM(certBytes)
-			if !ok {
-				log.Panicf("kafka client failed to parse root certificate")
-			}
-			mqConfig.Net.TLS.Config = &tls.Config{
-				RootCAs:            clientCertPool,
-				InsecureSkipVerify: true,
-			}
-			mqConfig.Net.TLS.Enable = true
-		case "sasl_plaintext":
-			mqConfig.Net.SASL.Enable = true
-			mqConfig.Net.SASL.User = cfg.SaslUsername
-			mqConfig.Net.SASL.Password = cfg.SaslPassword
-			mqConfig.Net.SASL.Handshake = true
-		default:
-			log.Panicf("unknown protocol %v", cfg.SecurityProtocol)
-	}
-
-	if err := mqConfig.Validate(); err != nil {
-		log.Panicf("Kafka producer config invalidate. config: %v. err: %v", *cfg, err)
-	}
+	kafkaConf := generateKafkaConf(cfg)
 	/**
 	 * Setup a new Sarama consumer group
 	 */
@@ -114,7 +135,7 @@ func main() {
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
-	client, err := sarama.NewConsumerGroup(strings.Split(cfg.BootstrapServers, ","), cfg.GroupId, mqConfig)
+	client, err := sarama.NewConsumerGroup(strings.Split(cfg.BootstrapServers, ","), cfg.GroupId, kafkaConf)
 	if err != nil {
 		log.Panicf("Error creating consumer group client: %v", err)
 	}
@@ -125,7 +146,7 @@ func main() {
 		defer wg.Done()
 		for {
 			if err := client.Consume(ctx, []string{cfg.Topic, cfg.Topic2}, &consumer); err != nil {
-				log.Panicf("Error from consumer: %v", err)
+				log.Printf("Error from consumer: %v", err)
 			}
 			// check if context was cancelled, signaling that the consumer should stop
 			if ctx.Err() != nil {
