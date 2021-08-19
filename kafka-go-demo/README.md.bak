@@ -2,46 +2,32 @@
 该Demo已经废弃
 
 ### 准备客户端
-demo配置的目的仅仅是把应用跑起来作为参考，更多参数和程序健壮性请参考官方文档设置以保证客户端的稳定和性能。
-[Kafka 官网 Clients 列表](https://cwiki.apache.org/confluence/display/KAFKA/Clients#Clients-Go(AKAgolang)) 
-推荐使用 [开源 sarama GO客户端](https://github.com/Shopify/sarama)进行接入。
+本demo配置的目的仅仅是把应用跑起来作为参考，更多参数和程序健壮性请参考官方文档设置以保证客户端的稳定和性能。
 
-### 安装环境
-1. 请确保安装了 Go 环境，详情请前往 [golang 官网](https://golang.org "golang 官网") 参考；
-2. 执行命令：`git clone https://github.com/AliwareMQ/aliware-kafka-demos.git`
-3. 执行命令：`cd aliware-kafka-demos/kafka-go-demo`
-4. 执行命令：<code>export GOPATH=\`pwd\`</code>
-5. 执行命令安装依赖(请保证联网，需要几分钟，请耐心等待): 
-</br>`go get github.com/Shopify/sarama/ ; go get github.com/bsm/sarama-cluster`
-6. 执行命令：`go install services`
-7. 执行命令：`go install services/producer`
-8. 执行命令：`go install services/consumer`
-9. 按照本页下面配置说明配置 conf/kafka.json
-10. 生产(没报错说明运行成功): `./bin/producer`
-11. 消费(没报错说明运行成功)：`./bin/consumer`
-
+go 1.13+
 
 ### 准备配置
+修改 conf/kafka.json 中的配置
+接入点参考 https://help.aliyun.com/document_detail/162334.html
+该Demo测试多Topic发送，请至少申请2个Topic
 
-##### beta(废弃)
 
-##### vpc
-vpc实例接入demo配置
-
-| Demo 库中配置文件 |配置项| 说明 |
+| 配置项 | 说明 |  是否必须 |
 | --- | --- | --- |
-| conf/kafka.json | topics | 请修改为控制台上申请的 Topic |
-| conf/kafka.json | servers | 请修改为控制台获取的接入点 |
-| conf/kafka.json  | consumerGroup | 请修改为控制要申请的 Consumer Group |
+| topic | 控制台上申请的 Topic | 是
+| topic2 | 控制台上申请的另外1个 Topic | 是
+| group.id | 控制台上申请的 ConsumerGroup | 否，只有Consumer需要 |
+| bootstrap.servers | 实例详情页查看接入点 | 是 |
+| security.protocol | 默认是plaintext, 可选sasl_ssl, sasl_plaintext | 是 |
+| sasl.mechanism | 默认是 PLAIN, 可选SCRAM-SHA-256 | 如果协议带sasl则必须 |
+| sasl.username | 实例详情页获取 | 如果协议带sasl则必须 |
+| sasl.password | 实例详情页获取 | 如果协议带sasl则必须 |
 
-##### vpc-ssl
-公网ssl实例接入demo配置
+### 测试执行
+```
+# 发送消息
+go run -mod=vendor producer/producer.go
+# 消费消息
+go run -mod=vendor consumer/consumer.go
+```
 
-| Demo 库中配置文件 |配置项| 说明 |
-| --- | --- | --- |
-| conf/kafka.json | topics | 请修改为控制台上申请的 Topic |
-| conf/kafka.json | servers | 请修改为控制台获取的接入点 |
-| conf/kafka.json  | consumerGroup | 请修改为控制要申请的 Consumer Group |
-| conf/kafka.json	|username	|请修改为实例详情的用户名|
-| conf/kafka.json	|password	|请修改为实例详情的密码|
-|conf/kafka.json	|cert_file	|根证书路径，运行 Demo 时无需修改，实际部署时注意相对路径|

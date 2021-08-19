@@ -7,10 +7,12 @@ go 1.13+
 ### 准备配置
 修改 conf/kafka.json 中的配置   
 接入点参考 https://help.aliyun.com/document_detail/162334.html
+该Demo测试多Topic发送，请至少申请2个Topic
 
 | 配置项 | 说明 |  是否必须 |
 | --- | --- | --- |
 | topic | 控制台上申请的 Topic | 是
+| topic2 | 控制台上申请的另外1个 Topic | 是
 | group.id | 控制台上申请的 ConsumerGroup | 否，只有Consumer需要 |
 | bootstrap.servers | 实例详情页查看接入点 | 是 |
 | security.protocol | 默认是plaintext, 可选sasl_ssl, sasl_plaintext | 是 |
