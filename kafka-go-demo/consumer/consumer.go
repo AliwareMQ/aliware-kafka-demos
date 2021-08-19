@@ -14,6 +14,7 @@ import (
 	"strings"
 	"sync"
 	"syscall"
+	"time"
 )
 
 
@@ -67,6 +68,7 @@ func main() {
 	mqConfig := sarama.NewConfig()
 	mqConfig.Version = sarama.V2_2_0_0
 	// set to newest in production environment to avoid large amount of duplication
+	mqConfig.Metadata.RefreshFrequency = 5 * time.Minute
 	mqConfig.Consumer.Offsets.Initial = sarama.OffsetNewest
 
 	switch cfg.SecurityProtocol {
@@ -104,8 +106,6 @@ func main() {
 	if err := mqConfig.Validate(); err != nil {
 		log.Panicf("Kafka producer config invalidate. config: %v. err: %v", *cfg, err)
 	}
-
-
 	/**
 	 * Setup a new Sarama consumer group
 	 */
