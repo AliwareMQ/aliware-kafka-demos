@@ -1,8 +1,10 @@
 {
-  "topics": ["XXX"],
-  "servers": ["XXX:9093","XXX:9093","XXX:9093"],
-  "username": "XXX",
-  "password": "XXX",
-  "consumerGroup": "XXX",
-  "cert_file": "ca-cert"
+  "topic": "XXX",
+  "topic2": "XXX",
+  "group.id": "XXX",
+  "bootstrap.servers" : "XXX:XX,XXX:XX,XXX:XX",
+  "security.protocol" : "plaintext",
+  "sasl.mechanism" : "PLAIN",
+  "sasl.username" : "XXX",
+  "sasl.password" : "XXX"
 }
