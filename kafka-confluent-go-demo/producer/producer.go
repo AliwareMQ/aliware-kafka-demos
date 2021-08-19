@@ -122,7 +122,7 @@ func main() {
 	i := 0
 	for {
 		i = i + 1
-		value := "this is a kafka message from sarama go " + strconv.Itoa(i)
+		value := "this is a kafka message from confluent go " + strconv.Itoa(i)
 		var msg *kafka.Message = nil
 		if i % 2 == 0 {
 			msg = &kafka.Message{
