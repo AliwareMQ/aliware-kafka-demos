@@ -27,8 +27,30 @@ public class KafkaConsumerDemo {
 
         //接入协议，
         props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_PLAINTEXT");
+
+        // 设置SASL账号
+        String saslMechanism = kafkaProperties.getProperty("sasl.mechanism");
+        String username = kafkaProperties.getProperty("sasl.username");
+        String password = kafkaProperties.getProperty("sasl.password");
+        if (!JavaKafkaConfigurer.isEmpty(username)
+                && !JavaKafkaConfigurer.isEmpty(password)) {
+            String prefix = "org.apache.kafka.common.security.scram.ScramLoginModule";
+            if ("PLAIN".equalsIgnoreCase(saslMechanism)) {
+                prefix = "org.apache.kafka.common.security.plain.PlainLoginModule";
+            }
+            String jaasConfig = String.format("%s required username=\"%s\" password=\"%s\";", prefix, username, password);
+            props.put(SaslConfigs.SASL_JAAS_CONFIG, jaasConfig);
+        } else {
+            if ("PLAIN".equalsIgnoreCase(saslMechanism)) {
+                JavaKafkaConfigurer.configureSaslPlain();
+            } else {
+                JavaKafkaConfigurer.configureSaslScram();
+            }
+        }
+
+
         // scram 方式和plain方式区别
-        props.put(SaslConfigs.SASL_MECHANISM, "PLAIN");
+        props.put(SaslConfigs.SASL_MECHANISM, saslMechanism);
         //props.put(SaslConfigs.SASL_MECHANISM, "SCRAM-SHA-256");
 
         //可更加实际拉去数据和客户的版本等设置此值，默认30s

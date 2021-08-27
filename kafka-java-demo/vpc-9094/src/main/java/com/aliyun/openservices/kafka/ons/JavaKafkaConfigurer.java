@@ -6,6 +6,17 @@ public class JavaKafkaConfigurer {
 
     private static Properties properties;
 
+    public static boolean isEmpty(String str) {
+        if (null == str) {
+            return true;
+        }
+        if (0 == str.trim().length()) {
+            return true;
+        }
+
+        return false;
+    }
+
     public static void configureSaslPlain() {
         //如果用-D或者其它方式设置过，这里不再设置
         if (null == System.getProperty("java.security.auth.login.config")) {

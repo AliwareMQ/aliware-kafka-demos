@@ -31,8 +31,22 @@ public class KafkaConsumerDemo {
         props.put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG, "KafkaOnsClient");
         //接入协议，目前支持使用SASL_SSL协议接入
         props.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");
+
+        // 设置SASL账号
+        String saslMechanism = kafkaProperties.getProperty("sasl.mechanism");
+        String username = kafkaProperties.getProperty("sasl.username");
+        String password = kafkaProperties.getProperty("sasl.password");
+        if (!JavaKafkaConfigurer.isEmpty(username)
+                && !JavaKafkaConfigurer.isEmpty(password)) {
+            String prefix = "org.apache.kafka.common.security.scram.ScramLoginModule";
+            if ("PLAIN".equalsIgnoreCase(saslMechanism)) {
+                prefix = "org.apache.kafka.common.security.plain.PlainLoginModule";
+            }
+            String jaasConfig = String.format("%s required username=\"%s\" password=\"%s\";", prefix, username, password);
+            props.put(SaslConfigs.SASL_JAAS_CONFIG, jaasConfig);
+        }
         //SASL鉴权方式，保持不变
-        props.put(SaslConfigs.SASL_MECHANISM, "PLAIN");
+        props.put(SaslConfigs.SASL_MECHANISM, saslMechanism);
         //两次poll之间的最大允许间隔
         //可更加实际拉去数据和客户的版本等设置此值，默认30s
         props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 30000);
