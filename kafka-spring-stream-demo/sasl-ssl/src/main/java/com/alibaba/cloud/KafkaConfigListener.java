@@ -8,7 +8,7 @@ public class KafkaConfigListener implements ApplicationListener<ApplicationStart
     public void onApplicationEvent(ApplicationStartingEvent event) {
         //生产环境部署时，请修改为真正的路径
         if (System.getProperty("java.security.auth.login.config") == null) {
-            System.setProperty("java.security.auth.login.config", KafkaConfigListener.class.getClassLoader().getResource("kafka_client_jaas.conf").getPath());
+            System.setProperty("java.security.auth.login.config", Objects.requireNonNull(KafkaConfigListener.class.getClassLoader().getResource("kafka_client_jaas.conf")).getPath());
         }
     }
 }
