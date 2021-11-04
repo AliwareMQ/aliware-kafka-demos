@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "b0joFspyytsMWqbpO22AMniqB80pYZG7EQvbDr5kAzKUauUU9qQtWMxUm2VHGk7ph00oIaONWVWhbJqr0yQTaQ==",
+  "success": true,
+  "projectFilePath": "/Users/liujiang/RiderProjects/kafka-dotnet-demo/vpc/consumer/consumer.csproj",
+  "expectedPackageFiles": [
+    "/Users/liujiang/.nuget/packages/confluent.kafka/1.5.2/confluent.kafka.1.5.2.nupkg.sha512",
+    "/Users/liujiang/.nuget/packages/librdkafka.redist/1.5.2/librdkafka.redist.1.5.2.nupkg.sha512",
+    "/Users/liujiang/.nuget/packages/system.memory/4.5.0/system.memory.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

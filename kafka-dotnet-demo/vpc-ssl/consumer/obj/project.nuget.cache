@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "HzvQZVwNt/1jHpsgn6nPc9H+c5Mc4hqLyLx+fIUe7h97u6dyBcfELGkWMAjYuTYEzOXTHIUBhv1F6ip2Lmv/PA==",
+  "success": true,
+  "projectFilePath": "/Users/liujiang/RiderProjects/kafka-dotnet-demo/vpc-ssl/consumer/consumer.csproj",
+  "expectedPackageFiles": [
+    "/Users/liujiang/.nuget/packages/confluent.kafka/1.5.2/confluent.kafka.1.5.2.nupkg.sha512",
+    "/Users/liujiang/.nuget/packages/librdkafka.redist/1.5.2/librdkafka.redist.1.5.2.nupkg.sha512",
+    "/Users/liujiang/.nuget/packages/system.memory/4.5.0/system.memory.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

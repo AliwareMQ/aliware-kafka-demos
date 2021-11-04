@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vpc-ssl", "vpc-ssl", "{9502661F-896E-49AF-AE88-E57763082338}"
+ProjectSection(SolutionItems) = preProject
+	vpc-ssl\ca-cert.pem = vpc-ssl\ca-cert.pem
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vpc", "vpc", "{F95FAF49-0660-4ABD-AD8D-744CB4EEE557}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consumer", "vpc\consumer\consumer.csproj", "{98469EAE-7740-4624-BF85-998A009B2115}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "producer", "vpc\producer\producer.csproj", "{D6E0B43C-0B9C-463B-9441-DA5AA29DB167}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "producer", "vpc-ssl\producer\producer.csproj", "{C5EFFC5A-67C8-4722-8820-805751622A54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "consumer", "vpc-ssl\consumer\consumer.csproj", "{1387084D-51EB-4DBA-A2A8-600571AE219E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98469EAE-7740-4624-BF85-998A009B2115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98469EAE-7740-4624-BF85-998A009B2115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98469EAE-7740-4624-BF85-998A009B2115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98469EAE-7740-4624-BF85-998A009B2115}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6E0B43C-0B9C-463B-9441-DA5AA29DB167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6E0B43C-0B9C-463B-9441-DA5AA29DB167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6E0B43C-0B9C-463B-9441-DA5AA29DB167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6E0B43C-0B9C-463B-9441-DA5AA29DB167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5EFFC5A-67C8-4722-8820-805751622A54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5EFFC5A-67C8-4722-8820-805751622A54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5EFFC5A-67C8-4722-8820-805751622A54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5EFFC5A-67C8-4722-8820-805751622A54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1387084D-51EB-4DBA-A2A8-600571AE219E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1387084D-51EB-4DBA-A2A8-600571AE219E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1387084D-51EB-4DBA-A2A8-600571AE219E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1387084D-51EB-4DBA-A2A8-600571AE219E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{98469EAE-7740-4624-BF85-998A009B2115} = {F95FAF49-0660-4ABD-AD8D-744CB4EEE557}
+		{D6E0B43C-0B9C-463B-9441-DA5AA29DB167} = {F95FAF49-0660-4ABD-AD8D-744CB4EEE557}
+		{C5EFFC5A-67C8-4722-8820-805751622A54} = {9502661F-896E-49AF-AE88-E57763082338}
+		{1387084D-51EB-4DBA-A2A8-600571AE219E} = {9502661F-896E-49AF-AE88-E57763082338}
+	EndGlobalSection
+EndGlobal
