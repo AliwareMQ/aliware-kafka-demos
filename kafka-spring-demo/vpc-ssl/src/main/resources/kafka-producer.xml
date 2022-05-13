@@ -16,7 +16,7 @@
                 <!--请修改控制台获取的接入点-->
                 <entry key="bootstrap.servers" value="{XXX,你自己的SSL接入点信息}"/>
                 <!--请修改为自己的路径，最好是绝对路径-->
-                <entry key="ssl.truststore.location" value="{XXX,你自己的路径}/kafka.client.truststore.jks"/>
+                <entry key="ssl.truststore.location" value="{XXX,你自己的路径}/mix.4096.client.truststore.jks"/>
                 <entry key="ssl.truststore.password" value="KafkaOnsClient"/>
                 <entry key="security.protocol" value="SASL_SSL"/>
                 <entry key="sasl.mechanism" value="PLAIN"/>
