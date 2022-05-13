@@ -9,7 +9,7 @@ $conf->set('sasl.username', $setting['sasl_plain_username']);
 // 设置密码：控制台 配置信息 的密码
 $conf->set('sasl.password', $setting['sasl_plain_password']);
 $conf->set('security.protocol', 'SASL_SSL');
-$conf->set('ssl.ca.location', __DIR__ . '/ca-cert.pem');
+$conf->set('ssl.ca.location', __DIR__ . '/mix-4096-ca-cert');
 
 $conf->set('group.id', $setting['consumer_id']);
 // 设置入口服务，请通过控制台获取对应的服务地址。

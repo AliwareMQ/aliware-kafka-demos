@@ -12,7 +12,7 @@ $conf->set('sasl.username', $setting['sasl_plain_username']);
 // 设置密码：控制台 配置信息 的密码
 $conf->set('sasl.password', $setting['sasl_plain_password']);
 $conf->set('security.protocol', 'SASL_SSL');
-$conf->set('ssl.ca.location', __DIR__ . '/ca-cert.pem');
+$conf->set('ssl.ca.location', __DIR__ . '/mix-4096-ca-cert');
 
 // Kafka producer 的 ack 有 3 种机制，分别说明如下：
 // -1 或 all：Broker 在 leader 收到数据并同步给所有 ISR 中的 follower 后，才应答给 Producer 继续发送下一条（批）消息。

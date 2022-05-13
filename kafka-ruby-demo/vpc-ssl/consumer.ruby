@@ -20,7 +20,7 @@ kafka = Kafka.new(
         socket_timeout: 20,
         logger: logger,
         # put "./cert.pem" to anywhere this can read
-        ssl_ca_cert: File.read('./cert.pem'),
+        ssl_ca_cert: File.read('./mix-4096-ca-cert'),
         sasl_plain_username: username,
         sasl_plain_password: password,
         )

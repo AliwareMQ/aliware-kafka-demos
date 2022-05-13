@@ -83,7 +83,7 @@ func generateKafkaConf(cfg *KafkaConfig)  *sarama.Config{
 		kafkaConf.Net.SASL.Password = cfg.SaslPassword
 		kafkaConf.Net.SASL.Handshake = true
 
-		certBytes, err := ioutil.ReadFile(getFullPath("ca-cert"))
+		certBytes, err := ioutil.ReadFile(getFullPath("mix-4096-ca-cert"))
 		if err != nil {
 			log.Panicf("kafka client read cert file failed %v", err)
 		}

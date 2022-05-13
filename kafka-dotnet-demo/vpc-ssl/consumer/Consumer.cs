@@ -9,7 +9,7 @@ class Consumer
         var conf = new ConsumerConfig {
             GroupId = "XXX",
             BootstrapServers = "XXX,XXX,XXX",
-            SslCaLocation = "XXX/ca-cert.pem",
+            SslCaLocation = "XXX/mix-4096-ca-cert",
             SaslMechanism = SaslMechanism.Plain,
             SecurityProtocol = SecurityProtocol.SaslSsl,
             SaslUsername = "XXX",

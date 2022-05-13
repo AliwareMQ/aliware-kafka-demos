@@ -10,7 +10,7 @@ var consumer = new Kafka.KafkaConsumer({
     'api.version.request': 'true',
 	'bootstrap.servers': config['bootstrap_servers'],
 	'security.protocol' : 'sasl_ssl',
-	'ssl.ca.location' : './ca-cert.pem',
+	'ssl.ca.location' : './mix-4096-ca-cert',
 	'sasl.mechanisms' : 'PLAIN',
     'message.max.bytes': 32000,
     'fetch.max.bytes' : 32000,

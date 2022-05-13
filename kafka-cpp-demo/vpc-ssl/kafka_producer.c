@@ -122,7 +122,7 @@ int main (int argc, char **argv) {
                 return 1;
         }
 
-        if (rd_kafka_conf_set(conf, "ssl.ca.location", "ca-cert.pem", errstr, sizeof(errstr)) != RD_KAFKA_CONF_OK 
+        if (rd_kafka_conf_set(conf, "ssl.ca.location", "mix-4096-ca-cert", errstr, sizeof(errstr)) != RD_KAFKA_CONF_OK
                     || rd_kafka_conf_set(conf, "security.protocol", "sasl_ssl", errstr, sizeof(errstr)) != RD_KAFKA_CONF_OK 
                     || rd_kafka_conf_set(conf, "sasl.mechanism", "PLAIN", errstr, sizeof(errstr)) != RD_KAFKA_CONF_OK
                     || rd_kafka_conf_set(conf, "sasl.username", username, errstr, sizeof(errstr)) != RD_KAFKA_CONF_OK
