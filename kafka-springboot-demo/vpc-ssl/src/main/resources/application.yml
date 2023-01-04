@@ -21,8 +21,8 @@ spring:
         #PLAIN, SCRAM-SHA-256
         mechanism: PLAIN
         # 设置SASL账号密码，从控制台获取
-        username: alikafka_post-cn-jaj30u1r6007
-        password: pEEqgoXe5c1QBIW6qTPe7hxhHvwUpEY2
+        username: xxx
+        password: xxx
         # 根证书store的密码，保持不变
         truststore_password: KafkaOnsClient
     producer:
