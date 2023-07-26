@@ -9,9 +9,6 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFuture;
 
-/**
- * @author liujiang
- */
 @Slf4j
 @Component
 public class ProducerDemo {

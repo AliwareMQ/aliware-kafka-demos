@@ -19,7 +19,6 @@ import java.util.Map;
 /**
  * Kafka消费端配置
  *
- * @author liujiang
  */
 @Configuration
 @EnableKafka

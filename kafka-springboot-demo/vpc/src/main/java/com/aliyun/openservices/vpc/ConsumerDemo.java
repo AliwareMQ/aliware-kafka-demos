@@ -5,9 +5,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-/**
- * @author liujiang
- */
 @Slf4j
 @Component
 public class ConsumerDemo {
