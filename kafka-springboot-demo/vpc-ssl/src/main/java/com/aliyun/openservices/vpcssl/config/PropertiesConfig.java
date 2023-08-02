@@ -37,6 +37,8 @@ public class PropertiesConfig {
     private String kafkaProducerRetries;
     @Value("${spring.kafka.producer.reconnect-backoff-ms}")
     private String kafkaProducerReconnectBackoffMs;
+    @Value("${spring.kafka.producer.enable-idempotence}")
+    private Boolean kafkaEnableIdempotence;
 
 
     /**

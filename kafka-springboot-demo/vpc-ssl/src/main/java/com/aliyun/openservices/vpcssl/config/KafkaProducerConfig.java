@@ -48,7 +48,7 @@ public class KafkaProducerConfig {
         props.put(ProducerConfig.RETRIES_CONFIG, propertiesConfig.getKafkaProducerRetries());
         props.put(ProducerConfig.RECONNECT_BACKOFF_MS_CONFIG, propertiesConfig.getKafkaProducerReconnectBackoffMs());
         props.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, propertiesConfig.getKafkaProducerMaxBlockMs());
-        props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, false);
+        props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, propertiesConfig.getKafkaEnableIdempotence());
         // ssl 认证
         KafkaSaslConfig.kafkaSaslConfig(props, propertiesConfig);
         return props;
