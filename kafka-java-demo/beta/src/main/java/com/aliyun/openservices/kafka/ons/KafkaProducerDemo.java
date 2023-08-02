@@ -36,6 +36,8 @@ public class KafkaProducerDemo {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         //请求的最长等待时间
         props.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 30 * 1000);
+        // 关闭幂等
+        props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, false);
 
         //构造Producer对象，注意，该对象是线程安全的，一般来说，一个进程内一个Producer对象即可；
         //如果想提高性能，可以多构造几个对象，但不要太多，最好不要超过5个
