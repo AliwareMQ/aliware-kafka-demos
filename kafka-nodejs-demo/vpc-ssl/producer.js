@@ -13,6 +13,7 @@ var producer = new Kafka.Producer({
     'security.protocol' : 'sasl_ssl',
 	'ssl.ca.location' : './mix-4096-ca-cert',
 	'sasl.mechanisms' : 'PLAIN',
+    'ssl.endpoint.identification.algorithm':'none',
 	'sasl.username' : config['sasl_plain_username'],
 	'sasl.password' : config['sasl_plain_password']
 });

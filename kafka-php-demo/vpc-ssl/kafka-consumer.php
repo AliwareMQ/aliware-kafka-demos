@@ -10,6 +10,7 @@ $conf->set('sasl.username', $setting['sasl_plain_username']);
 $conf->set('sasl.password', $setting['sasl_plain_password']);
 $conf->set('security.protocol', 'SASL_SSL');
 $conf->set('ssl.ca.location', __DIR__ . '/mix-4096-ca-cert');
+$conf->set('ssl.endpoint.identification.algorithm', 'none');
 
 $conf->set('group.id', $setting['consumer_id']);
 // 设置入口服务，请通过控制台获取对应的服务地址。

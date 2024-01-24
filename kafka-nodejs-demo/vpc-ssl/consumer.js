@@ -16,6 +16,7 @@ var consumer = new Kafka.KafkaConsumer({
     'fetch.max.bytes' : 32000,
     'fetch.message.max.bytes': 32000,
     'max.partition.fetch.bytes': 32000,
+    'ssl.endpoint.identification.algorithm':'none',
     'sasl.username' : config['sasl_plain_username'],
 	'sasl.password' : config['sasl_plain_password'],
     'group.id' : config['consumer_id']
