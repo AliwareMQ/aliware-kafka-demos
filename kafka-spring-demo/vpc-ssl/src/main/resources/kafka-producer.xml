@@ -23,6 +23,9 @@
                 <entry key="retries" value="10"/>
                 <entry key="batch.size" value="16384"/>
                 <entry key="linger.ms" value="1"/>
+                <entry key="enable.idempotence" value="false"/>
+                <entry key="ssl.endpoint.identification.algorithm" value=""/>
+
                 <entry key="buffer.memory" value="33554432"/>
                 <entry key="key.serializer" value="org.apache.kafka.common.serialization.StringSerializer"/>
                 <entry key="value.serializer" value="org.apache.kafka.common.serialization.StringSerializer"/>

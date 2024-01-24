@@ -22,6 +22,7 @@
                 <entry key="sasl.mechanism" value="PLAIN"/>
                 <entry key="group.id" value="{XXX,你在控制台申请的CID}"/>
                 <entry key="enable.auto.commit" value="true"/>
+                <entry key="ssl.endpoint.identification.algorithm" value=""/>
                 <entry key="auto.commit.interval.ms" value="1000"/>
                 <entry key="session.timeout.ms" value="15000"/>
                 <entry key="key.deserializer" value="org.apache.kafka.common.serialization.StringDeserializer"/>

@@ -3,6 +3,8 @@ package com.alibaba.cloud;
 import org.springframework.boot.context.event.ApplicationStartingEvent;
 import org.springframework.context.ApplicationListener;
 
+import java.util.Objects;
+
 public class KafkaConfigListener implements ApplicationListener<ApplicationStartingEvent> {
     @Override
     public void onApplicationEvent(ApplicationStartingEvent event) {

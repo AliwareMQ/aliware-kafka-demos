@@ -12,6 +12,7 @@ $conf->set('sasl.username', $setting['sasl_plain_username']);
 // 设置密码：控制台 配置信息 的密码
 $conf->set('sasl.password', $setting['sasl_plain_password']);
 $conf->set('security.protocol', 'SASL_SSL');
+$conf->set('ssl.endpoint.identification.algorithm', 'none');
 $conf->set('ssl.ca.location', __DIR__ . '/mix-4096-ca-cert');
 
 // Kafka producer 的 ack 有 3 种机制，分别说明如下：

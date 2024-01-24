@@ -68,7 +68,10 @@ func doInitConsumer(cfg *KafkaConfig) *kafka.Consumer {
 		kafkaconf.SetKey("ssl.ca.location", "./conf/mix-4096-ca-cert");
 		kafkaconf.SetKey("sasl.username", cfg.SaslUsername);
 		kafkaconf.SetKey("sasl.password", cfg.SaslPassword);
-		kafkaconf.SetKey("sasl.mechanism", cfg.SaslMechanism)
+		kafkaconf.SetKey("sasl.mechanism", cfg.SaslMechanism);
+        // hostname校验改成空
+		kafkaconf.SetKey("ssl.endpoint.identification.algorithm", "None");
+		kafkaconf.SetKey("enable.ssl.certificate.verification", "false");
 	case "SASL_PLAINTEXT":
 		kafkaconf.SetKey("security.protocol", "sasl_plaintext");
 		kafkaconf.SetKey("sasl.username", cfg.SaslUsername);

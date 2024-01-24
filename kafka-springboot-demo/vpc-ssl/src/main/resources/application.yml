@@ -33,6 +33,7 @@ spring:
       retries: 5
       # 设置客户端内部重试间隔
       reconnect-backoff-ms: 3000
+      enable-idempotence: false
     consumer:
       # 当前消费实例所属的消费组，请在控制台申请之后填写, 属于同一个组的消费实例，会负载消费消息
       group-id: test1

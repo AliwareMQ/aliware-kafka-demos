@@ -12,6 +12,7 @@ class Consumer
             SslCaLocation = "XXX/mix-4096-ca-cert",
             SaslMechanism = SaslMechanism.Plain,
             SecurityProtocol = SecurityProtocol.SaslSsl,
+            SslEndpointIdentificationAlgorithm = SslEndpointIdentificationAlgorithm.None,
             SaslUsername = "XXX",
             SaslPassword = "XXX",
             AutoOffsetReset = AutoOffsetReset.Earliest

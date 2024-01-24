@@ -12,6 +12,7 @@ class Producer
             SecurityProtocol = SecurityProtocol.SaslSsl,
             SaslUsername = "XXX",
             SaslPassword = "XXX",
+            SslEndpointIdentificationAlgorithm = SslEndpointIdentificationAlgorithm.None
         };
 
         Action<DeliveryReport<Null, string>> handler = r =>

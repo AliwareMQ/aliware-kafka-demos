@@ -19,6 +19,7 @@
                 <entry key="batch.size" value="16384"/>
                 <entry key="linger.ms" value="1"/>
                 <entry key="buffer.memory" value="33554432"/>
+                <entry key="enable.idempotence" value="false"/>
                 <entry key="key.serializer" value="org.apache.kafka.common.serialization.StringSerializer"/>
                 <entry key="value.serializer" value="org.apache.kafka.common.serialization.StringSerializer"/>
             </map>
