@@ -1,0 +1,30 @@
+spring:
+  kafka:
+    bootstrap-servers: XXXXX
+
+    properties:
+      ssl.truststore.location: XXX/kafka.client.truststore.jks
+      ssl.truststore.password: KafkaOnsClient
+      security.protocol: SASL_SSL
+      sasl.mechanism: PLAIN
+
+    producer:
+      retries: 10
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        linger.ms: 1
+
+    consumer:
+      group-id: XXXX
+      enable-auto-commit: false
+      auto-commit-interval: 100
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        session.timeout.ms: 15000
+
+
+
