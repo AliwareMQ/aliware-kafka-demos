@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <!-- springframe 版本控制 -->
-        <spring.version>4.3.2.RELEASE</spring.version>
+        <spring.version>5.2.20.RELEASE</spring.version>
     </properties>
     <dependencies>
         <dependency>
