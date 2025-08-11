@@ -11,7 +11,11 @@
 
 
 
-
+## 注意事项
+#### 该 demo 依赖的 spring-kafka，对应的 kafka-clients 为 3.x。
+#### 我们建议 kafka-clients 保持 2.4 以及以上，2.4 版本及以上默认支持 Sticky Partition Strategy。
+#### 低于 2.4 版本的客户端可能会有某些特性不支持的情况。
+#### 如：2.0.1 版本不支持 zstd 压缩算法。
 
 	
 
